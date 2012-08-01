@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\LevelRepository")
  */
-class Level
+class Aim
 {
    /**
     * @ORM\Id
@@ -28,7 +28,7 @@ class Level
  	}
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="r4f\UserBundle\Entity\User", mappedBy="level")
+	 * @ORM\OneToMany(targetEntity="r4f\UserBundle\Entity\User", mappedBy="aim")
 	 */
     private $user;
 

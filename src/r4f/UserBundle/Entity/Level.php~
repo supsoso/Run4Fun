@@ -22,6 +22,11 @@ class Level
      */
     private $name;
 	
+	public function __toString()
+	{
+		return $this->name;
+ 	}
+	
 	/**
 	 * @ORM\OneToMany(targetEntity="r4f\UserBundle\Entity\User", mappedBy="level")
 	 */
