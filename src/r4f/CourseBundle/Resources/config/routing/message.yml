@@ -1,0 +1,10 @@
+message:
+    pattern:  /
+    defaults: { _controller: "r4fCourseBundle:Message:index" }
+
+message_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fCourseBundle:Message:show" }
+
+
+

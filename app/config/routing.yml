@@ -1,0 +1,12 @@
+r4fCourseBundle:
+    resource: "@r4fCourseBundle/Resources/config/routing.yml"
+    prefix:   /
+
+r4fUserBundle:
+    resource: "@r4fUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal

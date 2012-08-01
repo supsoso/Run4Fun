@@ -1,0 +1,6 @@
+r4fUserBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: r4fUserBundle:Default:index }
+HelloTheWorld:
+    pattern:  /hello-world
+    defaults: { _controller: r4fUserBundle:User:index }

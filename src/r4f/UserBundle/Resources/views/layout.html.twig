@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	Layout du Bundle USER - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<h1>USER</h1>
+
+	<hr>
+
+	{% for key, flash in app.session.getFlashes() %}
+		<div class="alert alert-{{ key }}">
+			{{ flash }}
+		</div>
+	{% endfor %}
+
+	{% block r4fUser_body %}
+	{% endblock %}
+
+{% endblock %}

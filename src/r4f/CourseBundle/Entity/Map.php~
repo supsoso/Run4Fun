@@ -1,0 +1,34 @@
+<?php
+
+namespace r4f\CourseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\MapRepository")
+ */
+class Map
+{
+   /**
+    * @ORM\Id
+    * @ORM\Column(type="integer")
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $priority;
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="r4f\CourseBundle\Entity\Course", inversedBy="maps")
+     */
+	private $course;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="r4f\CourseBundle\Entity\Address", inversedBy="maps")
+	 */
+	private $address;
+}

@@ -1,0 +1,45 @@
+<?php
+
+namespace r4f\CourseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\CourseRepository")
+ */
+class Course
+{
+   /**
+    * @ORM\Id
+    * @ORM\Column(type="integer")
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+	
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $length;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="r4f\CourseBundle\Entity\Message", mappedBy="course", cascade={"remove", "persist"})
+	 */
+	private $messages;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="r4f\CourseBundle\Entity\Subscription", mappedBy="course", cascade={"remove", "persist"})
+	 */
+	private $subscriptions;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="r4f\CourseBundle\Entity\Map", mappedBy="course", cascade={"remove", "persist"})
+     */
+	private $map;
+ 
+}

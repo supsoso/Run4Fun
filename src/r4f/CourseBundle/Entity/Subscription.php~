@@ -1,0 +1,29 @@
+<?php
+
+namespace r4f\CourseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\SubscriptionRepository")
+ */
+class Subscription
+{
+   /**
+    * @ORM\Id
+    * @ORM\Column(type="integer")
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    protected $id;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="r4f\UserBundle\Entity\User", inversedBy="subscriptions")
+	 */
+	private $user;
+	
+	/**
+	 * @ORM\ManyToOne(targetEntity="r4f\CourseBundle\Entity\Course", inversedBy="subscriptions")
+	 */
+	private $course;
+}

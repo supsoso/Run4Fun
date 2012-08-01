@@ -1,0 +1,3 @@
+r4fCourseBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: r4fCourseBundle:Default:index }

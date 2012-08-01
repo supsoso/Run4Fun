@@ -1,0 +1,37 @@
+<h1>Address list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Address</th>
+            <th>Zip_code</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('address_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.address }}</td>
+            <td>{{ entity.zipcode }}</td>
+            <td>{{ entity.city }}</td>
+            <td>{{ entity.country }}</td>
+            <td>{{ entity.latitude }}</td>
+            <td>{{ entity.longitude }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('address_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

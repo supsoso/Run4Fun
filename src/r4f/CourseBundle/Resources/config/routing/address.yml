@@ -1,0 +1,10 @@
+address:
+    pattern:  /
+    defaults: { _controller: "r4fCourseBundle:Address:index" }
+
+address_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fCourseBundle:Address:show" }
+
+
+
