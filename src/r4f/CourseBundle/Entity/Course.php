@@ -27,6 +27,11 @@ class Course
      */
     private $length;
 	
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $meeting_point;	
+	
 	/**
 	 * @ORM\OneToMany(targetEntity="r4f\CourseBundle\Entity\Message", mappedBy="course", cascade={"remove", "persist"})
 	 */

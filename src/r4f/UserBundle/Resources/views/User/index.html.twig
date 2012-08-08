@@ -6,18 +6,9 @@
 
 {% block r4fUser_body %}
 
-	<h2>Liste des user</h2>
+	<h2>HomePage</h2>
 
-	<ul>
-		{% for article in articles %}
-			<li>
-				<a href="{{ path('sdzblog_voir', {'id': article.id}) }}">{{ article.titre }}</a>
-				par {{ article.auteur }},
-				le {{ article.date|date('d/m/Y') }}
-			</li>
-		{% else %}
-			<li>Aucun user dans la BDD</li>
-		{% endfor %}
-	</ul>
+		<img src="{{ asset('images/1_Index.png') }}"/> 
+
 
 {% endblock %}

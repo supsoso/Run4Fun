@@ -45,5 +45,25 @@ class CourseController extends Controller
             'entity'      => $entity,
         ));
     }
+	
+    public function listAction()
+    {
+        return $this->render('r4fCourseBundle:Course:list.html.twig');
+    }
+	
+    public function selectcourseAction($id)
+    {
+        return $this->render('r4fCourseBundle:Course:selectcourse.html.twig', array('id' => $id));
+    }
+	
+    public function joincourseAction($id)
+    {
+        return $this->render('r4fCourseBundle:Course:joincourse.html.twig', array('id' => $id));
+    }
+
+	public function createcourseAction()
+    {
+        return $this->render('r4fCourseBundle:Course:createcourse.html.twig');
+    }
 
 }

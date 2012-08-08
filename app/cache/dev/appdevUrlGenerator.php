@@ -13,16 +13,6 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
     static private $declaredRouteNames = array(
-       '_welcome' => true,
-       '_demo_login' => true,
-       '_security_check' => true,
-       '_demo_logout' => true,
-       'acme_demo_secured_hello' => true,
-       '_demo_secured_hello' => true,
-       '_demo_secured_hello_admin' => true,
-       '_demo' => true,
-       '_demo_hello' => true,
-       '_demo_contact' => true,
        '_wdt' => true,
        '_profiler_search' => true,
        '_profiler_purge' => true,
@@ -33,7 +23,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
-       'r4fCourseBundle_homepage' => true,
+       'courses_list' => true,
+       'select_course' => true,
+       'join_course' => true,
+       'create_course' => true,
        'user' => true,
        'user_show' => true,
        'user_new' => true,
@@ -41,6 +34,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'user_edit' => true,
        'user_update' => true,
        'user_delete' => true,
+       'login' => true,
+       'register' => true,
+       'select_user' => true,
+       'list_users' => true,
     );
 
     /**
@@ -62,56 +59,6 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         list($variables, $defaults, $requirements, $tokens) = $this->{'get'.$escapedName.'RouteInfo'}();
 
         return $this->doGenerate($variables, $defaults, $requirements, $tokens, $parameters, $name, $absolute);
-    }
-
-    private function get_welcomeRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
-    }
-
-    private function get_demo_loginRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/secured/login',  ),));
-    }
-
-    private function get_security_checkRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::securityCheckAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/secured/login_check',  ),));
-    }
-
-    private function get_demo_logoutRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::logoutAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/secured/logout',  ),));
-    }
-
-    private function getacme_demo_secured_helloRouteInfo()
-    {
-        return array(array (), array (  'name' => 'World',  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/secured/hello',  ),));
-    }
-
-    private function get_demo_secured_helloRouteInfo()
-    {
-        return array(array (  0 => 'name',), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/demo/secured/hello',  ),));
-    }
-
-    private function get_demo_secured_hello_adminRouteInfo()
-    {
-        return array(array (  0 => 'name',), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloadminAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/demo/secured/hello/admin',  ),));
-    }
-
-    private function get_demoRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/',  ),));
-    }
-
-    private function get_demo_helloRouteInfo()
-    {
-        return array(array (  0 => 'name',), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::helloAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/demo/hello',  ),));
-    }
-
-    private function get_demo_contactRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/demo/contact',  ),));
     }
 
     private function get_wdtRouteInfo()
@@ -164,43 +111,78 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
     }
 
-    private function getr4fCourseBundle_homepageRouteInfo()
+    private function getcourses_listRouteInfo()
     {
-        return array(array (  0 => 'name',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'name',  ),  1 =>   array (    0 => 'text',    1 => '/hello',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/list',  ),));
+    }
+
+    private function getselect_courseRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectcourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/courses',  ),));
+    }
+
+    private function getjoin_courseRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joincourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
+    }
+
+    private function getcreate_courseRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createcourseAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/create',  ),));
     }
 
     private function getuserRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/user/',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/index',  ),));
     }
 
     private function getuser_showRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/user',  ),));
+        return array(array (  0 => 'id',  1 => 'pseudo',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'pseudo',  ),  1 =>   array (    0 => 'text',    1 => '/show',  ),  2 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
     }
 
     private function getuser_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/user/new',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/new',  ),));
     }
 
     private function getuser_createRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/user/create',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/create',  ),));
     }
 
     private function getuser_editRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/user',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
     }
 
     private function getuser_updateRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/user',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
     }
 
     private function getuser_deleteRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/user',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
+    }
+
+    private function getloginRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login',  ),));
+    }
+
+    private function getregisterRouteInfo()
+    {
+        return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/register',  ),));
+    }
+
+    private function getselect_userRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectuserAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/user',  ),));
+    }
+
+    private function getlist_usersRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listusersAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),));
     }
 }

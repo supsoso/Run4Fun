@@ -1,3 +1,17 @@
-r4fCourseBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: r4fCourseBundle:Default:index }
+courses_list:
+    pattern:  /courses/list
+    defaults: { _controller: r4fCourseBundle:Course:list }
+select_course:
+    pattern:  /courses/{id}
+    defaults: { _controller: r4fCourseBundle:Course:selectcourse }
+    requirements:
+        id:   \d+
+join_course:
+    pattern:  /courses/{id}/join
+    defaults: { _controller: r4fCourseBundle:Course:joincourse }
+    requirements:
+        id:   \d+
+create_course:
+    pattern:  /courses/create
+    defaults: { _controller: r4fCourseBundle:Course:createcourse }
+

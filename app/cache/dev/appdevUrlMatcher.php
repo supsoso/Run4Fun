@@ -25,65 +25,6 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $allow = array();
         $pathinfo = urldecode($pathinfo);
 
-        // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
-            }
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
-        }
-
-        // _demo_login
-        if ($pathinfo === '/demo/secured/login') {
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::loginAction',  '_route' => '_demo_login',);
-        }
-
-        // _security_check
-        if ($pathinfo === '/demo/secured/login_check') {
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::securityCheckAction',  '_route' => '_security_check',);
-        }
-
-        // _demo_logout
-        if ($pathinfo === '/demo/secured/logout') {
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::logoutAction',  '_route' => '_demo_logout',);
-        }
-
-        // acme_demo_secured_hello
-        if ($pathinfo === '/demo/secured/hello') {
-            return array (  'name' => 'World',  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',  '_route' => 'acme_demo_secured_hello',);
-        }
-
-        // _demo_secured_hello
-        if (0 === strpos($pathinfo, '/demo/secured/hello') && preg_match('#^/demo/secured/hello/(?P<name>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloAction',)), array('_route' => '_demo_secured_hello'));
-        }
-
-        // _demo_secured_hello_admin
-        if (0 === strpos($pathinfo, '/demo/secured/hello/admin') && preg_match('#^/demo/secured/hello/admin/(?P<name>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\DemoBundle\\Controller\\SecuredController::helloadminAction',)), array('_route' => '_demo_secured_hello_admin'));
-        }
-
-        if (0 === strpos($pathinfo, '/demo')) {
-            // _demo
-            if (rtrim($pathinfo, '/') === '/demo') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', '_demo');
-                }
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::indexAction',  '_route' => '_demo',);
-            }
-
-            // _demo_hello
-            if (0 === strpos($pathinfo, '/demo/hello') && preg_match('#^/demo/hello/(?P<name>[^/]+?)$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::helloAction',)), array('_route' => '_demo_hello'));
-            }
-
-            // _demo_contact
-            if ($pathinfo === '/demo/contact') {
-                return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\DemoController::contactAction',  '_route' => '_demo_contact',);
-            }
-
-        }
-
         // _wdt
         if (preg_match('#^/_wdt/(?P<token>[^/]+?)$#s', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController::toolbarAction',)), array('_route' => '_wdt'));
@@ -143,65 +84,94 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // r4fCourseBundle_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'r4fCourseBundle_homepage'));
+        // courses_list
+        if ($pathinfo === '/courses/list') {
+            return array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::listAction',  '_route' => 'courses_list',);
         }
 
-        if (0 === strpos($pathinfo, '/user')) {
-            // user
-            if (rtrim($pathinfo, '/') === '/user') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'user');
-                }
-                return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
-            }
+        // select_course
+        if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectcourseAction',)), array('_route' => 'select_course'));
+        }
 
-            // user_show
-            if (preg_match('#^/user/(?P<id>[^/]+?)/show$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',)), array('_route' => 'user_show'));
-            }
+        // join_course
+        if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)/join$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joincourseAction',)), array('_route' => 'join_course'));
+        }
 
-            // user_new
-            if ($pathinfo === '/user/new') {
-                return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::newAction',  '_route' => 'user_new',);
-            }
+        // create_course
+        if ($pathinfo === '/courses/create') {
+            return array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createcourseAction',  '_route' => 'create_course',);
+        }
 
-            // user_create
-            if ($pathinfo === '/user/create') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_user_create;
-                }
-                return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',  '_route' => 'user_create',);
-            }
-            not_user_create:
+        // user
+        if ($pathinfo === '/index') {
+            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
+        }
 
-            // user_edit
-            if (preg_match('#^/user/(?P<id>[^/]+?)/edit$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',)), array('_route' => 'user_edit'));
-            }
+        // user_show
+        if (preg_match('#^/(?P<id>[^/]+?)/show/(?P<pseudo>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',)), array('_route' => 'user_show'));
+        }
 
-            // user_update
-            if (preg_match('#^/user/(?P<id>[^/]+?)/update$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_user_update;
-                }
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',)), array('_route' => 'user_update'));
-            }
-            not_user_update:
+        // user_new
+        if ($pathinfo === '/new') {
+            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::newAction',  '_route' => 'user_new',);
+        }
 
-            // user_delete
-            if (preg_match('#^/user/(?P<id>[^/]+?)/delete$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_user_delete;
-                }
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',)), array('_route' => 'user_delete'));
+        // user_create
+        if ($pathinfo === '/create') {
+            if ($this->context->getMethod() != 'POST') {
+                $allow[] = 'POST';
+                goto not_user_create;
             }
-            not_user_delete:
+            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',  '_route' => 'user_create',);
+        }
+        not_user_create:
 
+        // user_edit
+        if (preg_match('#^/(?P<id>[^/]+?)/edit$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',)), array('_route' => 'user_edit'));
+        }
+
+        // user_update
+        if (preg_match('#^/(?P<id>[^/]+?)/update$#s', $pathinfo, $matches)) {
+            if ($this->context->getMethod() != 'POST') {
+                $allow[] = 'POST';
+                goto not_user_update;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',)), array('_route' => 'user_update'));
+        }
+        not_user_update:
+
+        // user_delete
+        if (preg_match('#^/(?P<id>[^/]+?)/delete$#s', $pathinfo, $matches)) {
+            if ($this->context->getMethod() != 'POST') {
+                $allow[] = 'POST';
+                goto not_user_delete;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',)), array('_route' => 'user_delete'));
+        }
+        not_user_delete:
+
+        // login
+        if ($pathinfo === '/login') {
+            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::loginAction',  '_route' => 'login',);
+        }
+
+        // register
+        if ($pathinfo === '/register') {
+            return array('_route' => 'register');
+        }
+
+        // select_user
+        if (0 === strpos($pathinfo, '/user') && preg_match('#^/user/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectuserAction',)), array('_route' => 'select_user'));
+        }
+
+        // list_users
+        if ($pathinfo === '/users') {
+            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listusersAction',  '_route' => 'list_users',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

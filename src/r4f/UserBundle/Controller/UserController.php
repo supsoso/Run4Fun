@@ -28,6 +28,17 @@ class UserController extends Controller
         ));
     }
 
+	public function listusersAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entities = $em->getRepository('r4fUserBundle:User')->findAll();
+
+        return $this->render('r4fUserBundle:User:listusers.html.twig', array(
+            'entities' => $entities
+        ));
+    }
+
     /**
      * Finds and displays a User entity.
      *
@@ -43,7 +54,7 @@ class UserController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
+		
         return $this->render('r4fUserBundle:User:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -184,4 +195,20 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+	
+	public function loginAction()
+    {
+        return $this->render('r4fUserBundle:User:login.html.twig');
+    }
+	
+	public function registerAction()
+    {
+        return $this->render('r4fUserBundle:User:register.html.twig');
+    }
+	
+	public function selectuserAction($id)
+    {
+        return $this->render('r4fUserBundle:User:selectuser.html.twig', array('id' => $id));
+    }
+	
 }

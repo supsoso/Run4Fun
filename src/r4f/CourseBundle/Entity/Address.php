@@ -21,6 +21,11 @@ class Address
      */
     private $address;
 	
+	public function __toString()
+	{
+		return $this->address;
+ 	}
+	
     /**
      * @ORM\Column(type="string", length=255)
      */

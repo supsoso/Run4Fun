@@ -33,19 +33,6 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'acme.demo.listener' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Acme\DemoBundle\ControllerListener A Acme\DemoBundle\ControllerListener instance.
-     */
-    protected function getAcme_Demo_ListenerService()
-    {
-        return $this->services['acme.demo.listener'] = new \Acme\DemoBundle\ControllerListener($this->get('twig.extension.acme.demo'));
-    }
-
-    /**
      * Gets the 'annotation_reader' service.
      *
      * This service is shared.
@@ -83,7 +70,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'JMSSecurityExtraBundle', 'C:/wamp/www/Run4Fun/app/Resources/JMSSecurityExtraBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'JMSSecurityExtraBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\JMS\\SecurityExtraBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fUserBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fUserBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fUserBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\UserBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fCourseBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fCourseBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fCourseBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\CourseBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AcmeDemoBundle', 'C:/wamp/www/Run4Fun/app/Resources/AcmeDemoBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AcmeDemoBundle', 'C:\\wamp\\www\\Run4Fun\\src\\Acme\\DemoBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', 'C:/wamp/www/Run4Fun/app/Resources/WebProfilerBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', 'C:/wamp/www/Run4Fun/app/Resources/SensioDistributionBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\Sensio\\Bundle\\DistributionBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioGeneratorBundle', 'C:/wamp/www/Run4Fun/app/Resources/SensioGeneratorBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioGeneratorBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\Sensio\\Bundle\\GeneratorBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
@@ -317,7 +303,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addListenerService('kernel.view', array(0 => 'sensio_framework_extra.view.listener', 1 => 'onKernelView'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'sensio_framework_extra.cache.listener', 1 => 'onKernelResponse'), 0);
         $instance->addListenerService('kernel.controller', array(0 => 'security.extra.controller_listener', 1 => 'onCoreController'), -255);
-        $instance->addListenerService('kernel.controller', array(0 => 'acme.demo.listener', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'web_profiler.debug_toolbar', 1 => 'onKernelResponse'), -128);
 
         return $instance;
@@ -1764,7 +1749,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(array(0 => 'form_div_layout.html.twig')));
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), true, array()));
-        $instance->addExtension($this->get('twig.extension.acme.demo'));
 
         return $instance;
     }
@@ -2035,23 +2019,6 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'twig.extension.acme.demo' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * This service is private.
-     * If you want to be able to request this service from the container directly,
-     * make it public, otherwise you might end up with broken code.
-     *
-     * @return Acme\DemoBundle\Twig\Extension\DemoExtension A Acme\DemoBundle\Twig\Extension\DemoExtension instance.
-     */
-    protected function getTwig_Extension_Acme_DemoService()
-    {
-        return $this->services['twig.extension.acme.demo'] = new \Acme\DemoBundle\Twig\Extension\DemoExtension($this->get('twig.loader'));
-    }
-
-    /**
      * Gets the 'validator.mapping.class_metadata_factory' service.
      *
      * This service is shared.
@@ -2135,7 +2102,6 @@ class appDevDebugProjectContainer extends Container
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
                 'r4fUserBundle' => 'r4f\\UserBundle\\r4fUserBundle',
                 'r4fCourseBundle' => 'r4f\\CourseBundle\\r4fCourseBundle',
-                'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
@@ -2464,10 +2430,9 @@ class appDevDebugProjectContainer extends Container
                 8 => 'JMSSecurityExtraBundle',
                 9 => 'r4fUserBundle',
                 10 => 'r4fCourseBundle',
-                11 => 'AcmeDemoBundle',
-                12 => 'WebProfilerBundle',
-                13 => 'SensioDistributionBundle',
-                14 => 'SensioGeneratorBundle',
+                11 => 'WebProfilerBundle',
+                12 => 'SensioDistributionBundle',
+                13 => 'SensioGeneratorBundle',
             ),
             'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
             'assetic.twig_formula_loader.class' => 'Assetic\\Extension\\Twig\\TwigFormulaLoader',
