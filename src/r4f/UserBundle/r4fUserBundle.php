@@ -6,8 +6,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class r4fUserBundle extends Bundle
 {
-	public function indexAction()
+    public function getParent()
     {
-        return new Response("Hello World !");
+        return 'FOSUserBundle';
     }
 }
+
+

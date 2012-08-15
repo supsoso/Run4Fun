@@ -50,11 +50,26 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: mail
+    encryption: ssl
+    auth_mode:  login
+    host:       smtp.gmail.com
+    username:   nordine.rkaini
+    password:   maroc2.0.0.6
 
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+fos_user:
+    db_driver:     orm
+    firewall_name: main
+    user_class:    r4f\UserBundle\Entity\User
+    #registration:
+    #    form:
+    #        type: r4f_user_registration
+    #    confirmation:
+    #      from_email: 
+    #          address:        nordine.rkaini@gmail.com
+    #          sender_name:    Admin de run4fun.fr
+    #      enabled:    true 
+    #      template:   r4fUserBundle:Registration:registration.email.twig

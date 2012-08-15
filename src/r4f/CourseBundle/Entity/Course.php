@@ -2,11 +2,13 @@
 
 namespace r4f\CourseBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use r4f\CourseBundle\Entity\Address;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\CourseRepository")
+ * @ORM\Entity(repositoryClass="r4f\CourseBundle\Repository\CourseRepository")
  */
 class Course
 {
@@ -24,6 +26,7 @@ class Course
 	
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\MaxLength(limit=2, message="Faites attention svp, un runner humain ne peut pas courrir plus de 100km !")
      */
     private $length;
 	
@@ -46,12 +49,12 @@ class Course
      * @ORM\OneToMany(targetEntity="r4f\CourseBundle\Entity\Map", mappedBy="course", cascade={"remove", "persist"})
      */
 	private $map;
- 
+	
     public function __construct()
     {
         $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->map = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->map = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -162,5 +165,25 @@ class Course
     public function getMap()
     {
         return $this->map;
+    }
+
+    /**
+     * Set meeting_point
+     *
+     * @param string $meetingPoint
+     */
+    public function setMeetingPoint($meetingPoint)
+    {
+        $this->meeting_point = $meetingPoint;
+    }
+
+    /**
+     * Get meeting_point
+     *
+     * @return string 
+     */
+    public function getMeetingPoint()
+    {
+        return $this->meeting_point;
     }
 }

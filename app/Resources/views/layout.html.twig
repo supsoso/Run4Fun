@@ -25,12 +25,24 @@
 					<h3>Menu</h3>
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="{{ path('user') }}">Accueil Run</a></li>
-						<li><a href="{{ path('login') }}">Login / Register</a></li>
+						<li>
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						<a href="{{ path('fos_user_security_logout') }}">Logout / {{ app.user.username }} </a>
+						{% else %}
+						<a href="{{ path('fos_user_security_login') }}">Login / Register</a>
+						{% endif %}
+						</li>
 						<li><a href="{{ path('list_users') }}">Liste des Users</a></li>
 						<li><a href="{{ path('courses_list') }}">Liste des parcours</a></li>
 						<li><a href="{{ path('create_course') }}">Creer un nouveau parcours</a></li>
-						<li><a href="{{ path('user_new') }}">Ajouter un user</a></li>
 					</ul>
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					Connecté en tant que {{ app.user.username }} <br />
+					Mail: {{ app.user.email }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+					<br />
+					<br />
+					<a href="{{ path('select_user', { 'id': app.user.id  }) }}">Mon espace Runner</a>
+					{% endif %}
 				</div>
 				<div id="content" class="span9">
 					{% block body %}

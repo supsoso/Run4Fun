@@ -29,15 +29,26 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'create_course' => true,
        'user' => true,
        'user_show' => true,
-       'user_new' => true,
        'user_create' => true,
        'user_edit' => true,
        'user_update' => true,
        'user_delete' => true,
-       'login' => true,
-       'register' => true,
        'select_user' => true,
        'list_users' => true,
+       'fos_user_security_login' => true,
+       'fos_user_security_check' => true,
+       'fos_user_security_logout' => true,
+       'fos_user_profile_show' => true,
+       'fos_user_profile_edit' => true,
+       'fos_user_registration_register' => true,
+       'fos_user_registration_check_email' => true,
+       'fos_user_registration_confirm' => true,
+       'fos_user_registration_confirmed' => true,
+       'fos_user_resetting_request' => true,
+       'fos_user_resetting_send_email' => true,
+       'fos_user_resetting_check_email' => true,
+       'fos_user_resetting_reset' => true,
+       'fos_user_change_password' => true,
     );
 
     /**
@@ -118,32 +129,27 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getselect_courseRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectcourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/courses',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
     private function getjoin_courseRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joincourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joinCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
     private function getcreate_courseRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createcourseAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/create',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createCourseAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/new',  ),));
     }
 
     private function getuserRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/index',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 
     private function getuser_showRouteInfo()
     {
         return array(array (  0 => 'id',  1 => 'pseudo',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'pseudo',  ),  1 =>   array (    0 => 'text',    1 => '/show',  ),  2 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
-    }
-
-    private function getuser_newRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/new',  ),));
     }
 
     private function getuser_createRouteInfo()
@@ -166,23 +172,83 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
     }
 
-    private function getloginRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login',  ),));
-    }
-
-    private function getregisterRouteInfo()
-    {
-        return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/register',  ),));
-    }
-
     private function getselect_userRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectuserAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/user',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectUserAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/user',  ),));
     }
 
     private function getlist_usersRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listusersAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listUsersAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),));
+    }
+
+    private function getfos_user_security_loginRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login',  ),));
+    }
+
+    private function getfos_user_security_checkRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::checkAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login_check',  ),));
+    }
+
+    private function getfos_user_security_logoutRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::logoutAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/logout',  ),));
+    }
+
+    private function getfos_user_profile_showRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::showAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/profile/',  ),));
+    }
+
+    private function getfos_user_profile_editRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/profile/edit',  ),));
+    }
+
+    private function getfos_user_registration_registerRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::registerAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/register/',  ),));
+    }
+
+    private function getfos_user_registration_check_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::checkEmailAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/register/check-email',  ),));
+    }
+
+    private function getfos_user_registration_confirmRouteInfo()
+    {
+        return array(array (  0 => 'token',), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'token',  ),  1 =>   array (    0 => 'text',    1 => '/register/confirm',  ),));
+    }
+
+    private function getfos_user_registration_confirmedRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmedAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/register/confirmed',  ),));
+    }
+
+    private function getfos_user_resetting_requestRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::requestAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/resetting/request',  ),));
+    }
+
+    private function getfos_user_resetting_send_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::sendEmailAction',), array (  '_method' => 'POST',), array (  0 =>   array (    0 => 'text',    1 => '/resetting/send-email',  ),));
+    }
+
+    private function getfos_user_resetting_check_emailRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::checkEmailAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/resetting/check-email',  ),));
+    }
+
+    private function getfos_user_resetting_resetRouteInfo()
+    {
+        return array(array (  0 => 'token',), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::resetAction',), array (  '_method' => 'GET|POST',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'token',  ),  1 =>   array (    0 => 'text',    1 => '/resetting/reset',  ),));
+    }
+
+    private function getfos_user_change_passwordRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',), array (  '_method' => 'GET|POST',), array (  0 =>   array (    0 => 'text',    1 => '/change-password/change-password',  ),));
     }
 }

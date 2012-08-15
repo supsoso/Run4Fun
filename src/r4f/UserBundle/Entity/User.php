@@ -2,12 +2,14 @@
 
 namespace r4f\UserBundle\Entity;
 
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="fos_user")
  */
-class User
+class User extends BaseUser
 {
    /**
     * @ORM\Id
@@ -15,16 +17,6 @@ class User
     * @ORM\GeneratedValue(strategy="AUTO")
     */
     protected $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
 	
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,6 +27,16 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $aim;
+	
+	/**
+     * @ORM\Column(type="date")
+     */
+    private $birthdate;
+	
+	/**
+     * @ORM\Column(type="string", length=1)
+     */
+    private $sexe;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="r4f\UserBundle\Entity\Level", inversedBy="users")
@@ -58,8 +60,9 @@ class User
 	
     public function __construct()
     {
+		parent::__construct();
         $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -230,5 +233,45 @@ class User
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param date $birthdate
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return date 
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string 
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
     }
 }

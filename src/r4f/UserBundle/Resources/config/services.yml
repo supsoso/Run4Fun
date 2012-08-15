@@ -1,7 +1,8 @@
 parameters:
 #    r4f_user.example.class: r4f\UserBundle\Example
-
 services:
-#    r4f_user.example:
-#        class: %r4f_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    acme_user.registration.form.type:
+        class: r4f\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: r4f_user_registration }

@@ -3,7 +3,6 @@
 namespace r4f\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use r4f\UserBundle\Entity\User;
 use r4f\UserBundle\Form\UserType;
 
@@ -20,7 +19,6 @@ class UserController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entities = $em->getRepository('r4fUserBundle:User')->findAll();
 
         return $this->render('r4fUserBundle:User:index.html.twig', array(
@@ -28,15 +26,9 @@ class UserController extends Controller
         ));
     }
 
-	public function listusersAction()
+	public function listUsersAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('r4fUserBundle:User')->findAll();
-
-        return $this->render('r4fUserBundle:User:listusers.html.twig', array(
-            'entities' => $entities
-        ));
+        return $this->render('r4fUserBundle:User:listusers.html.twig');
     }
 
     /**
@@ -46,7 +38,6 @@ class UserController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entity = $em->getRepository('r4fUserBundle:User')->find($id);
 
         if (!$entity) {
@@ -57,8 +48,7 @@ class UserController extends Controller
 		
         return $this->render('r4fUserBundle:User:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
+            'delete_form' => $deleteForm->createView()
         ));
     }
 
@@ -110,7 +100,6 @@ class UserController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entity = $em->getRepository('r4fUserBundle:User')->find($id);
 
         if (!$entity) {
@@ -123,7 +112,7 @@ class UserController extends Controller
         return $this->render('r4fUserBundle:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
     }
 
@@ -143,9 +132,7 @@ class UserController extends Controller
 
         $editForm   = $this->createForm(new UserType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
         $request = $this->getRequest();
-
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
@@ -170,7 +157,6 @@ class UserController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
-
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -201,14 +187,8 @@ class UserController extends Controller
         return $this->render('r4fUserBundle:User:login.html.twig');
     }
 	
-	public function registerAction()
-    {
-        return $this->render('r4fUserBundle:User:register.html.twig');
-    }
-	
-	public function selectuserAction($id)
+	public function selectUserAction($id)
     {
         return $this->render('r4fUserBundle:User:selectuser.html.twig', array('id' => $id));
     }
-	
 }

@@ -19,7 +19,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new r4f\UserBundle\r4fUserBundle(),
             new r4f\CourseBundle\r4fCourseBundle(),
-        );
+			new FOS\UserBundle\FOSUserBundle(),
+			);
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();

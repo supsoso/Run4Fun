@@ -3,15 +3,15 @@ courses_list:
     defaults: { _controller: r4fCourseBundle:Course:list }
 select_course:
     pattern:  /courses/{id}
-    defaults: { _controller: r4fCourseBundle:Course:selectcourse }
+    defaults: { _controller: r4fCourseBundle:Course:selectCourse }
     requirements:
         id:   \d+
 join_course:
     pattern:  /courses/{id}/join
-    defaults: { _controller: r4fCourseBundle:Course:joincourse }
+    defaults: { _controller: r4fCourseBundle:Course:joinCourse }
     requirements:
         id:   \d+
 create_course:
-    pattern:  /courses/create
-    defaults: { _controller: r4fCourseBundle:Course:createcourse }
+    pattern:  /courses/new
+    defaults: { _controller: r4fCourseBundle:Course:createCourse }
 

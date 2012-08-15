@@ -1,37 +1,36 @@
 user:
-    pattern:  /index
+    pattern:  /
     defaults: { _controller: "r4fUserBundle:User:index" }
+
 user_show:
     pattern:  /{id}/show/{pseudo}
     defaults: { _controller: "r4fUserBundle:User:show" }
-user_new:
-    pattern:  /new
-    defaults: { _controller: "r4fUserBundle:User:new" }
+
 user_create:
     pattern:  /create
     defaults: { _controller: "r4fUserBundle:User:create" }
     requirements: { _method: post }
+
 user_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "r4fUserBundle:User:edit" }
+
 user_update:
     pattern:  /{id}/update
     defaults: { _controller: "r4fUserBundle:User:update" }
     requirements: { _method: post }
+
 user_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "r4fUserBundle:User:delete" }
     requirements: { _method: post }
-login:
-    pattern:  /login
-    defaults: { _controller: "r4fUserBundle:User:login" }
-register:
-    pattern: /register
+
 select_user:
     pattern: /user/{id}
-    defaults: { _controller: "r4fUserBundle:User:selectuser" }
+    defaults: { _controller: "r4fUserBundle:User:selectUser" }
     requirements:
         id:   \d+
+
 list_users:
     pattern: /users
-    defaults: { _controller: "r4fUserBundle:User:listusers" }	
+    defaults: { _controller: "r4fUserBundle:User:listUsers" }
