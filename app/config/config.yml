@@ -54,8 +54,6 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host:       smtp.gmail.com
-    username:   nordine.rkaini
-    password:   maroc2.0.0.6
 
 jms_security_extra:
     secure_controllers:  true
