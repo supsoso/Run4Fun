@@ -26,6 +26,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'courses_list' => true,
        'select_course' => true,
        'join_course' => true,
+       'leave_course' => true,
        'create_course' => true,
        'user' => true,
        'user_show' => true,
@@ -135,6 +136,11 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getjoin_courseRouteInfo()
     {
         return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joinCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
+    }
+
+    private function getleave_courseRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::leaveCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/leave',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
     private function getcreate_courseRouteInfo()

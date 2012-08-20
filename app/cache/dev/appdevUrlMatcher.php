@@ -99,6 +99,11 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joinCourseAction',)), array('_route' => 'join_course'));
         }
 
+        // leave_course
+        if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)/leave$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::leaveCourseAction',)), array('_route' => 'leave_course'));
+        }
+
         // create_course
         if ($pathinfo === '/courses/new') {
             return array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createCourseAction',  '_route' => 'create_course',);

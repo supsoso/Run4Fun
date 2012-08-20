@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="r4f\CourseBundle\Repository\CourseRepository")
+ * @ORM\Entity(repositoryClass="r4f\CourseBundle\Repository\SubscriptionRepository")
  */
 class Subscription
 {

@@ -189,6 +189,15 @@ class UserController extends Controller
 	
 	public function selectUserAction($id)
     {
-        return $this->render('r4fUserBundle:User:selectuser.html.twig', array('id' => $id));
+        $user = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fUserBundle:User')
+            ->find($id)
+        ;
+        
+        return $this->render('r4fUserBundle:User:selectuser.html.twig', array(
+            'id' => $id,
+            'user' => $user
+        ));
     }
 }

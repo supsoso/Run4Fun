@@ -11,7 +11,13 @@ join_course:
     defaults: { _controller: r4fCourseBundle:Course:joinCourse }
     requirements:
         id:   \d+
+leave_course:
+    pattern:  /courses/{id}/leave
+    defaults: { _controller: r4fCourseBundle:Course:leaveCourse }
+    requirements:
+        id:   \d+
 create_course:
     pattern:  /courses/new
     defaults: { _controller: r4fCourseBundle:Course:createCourse }
+
 

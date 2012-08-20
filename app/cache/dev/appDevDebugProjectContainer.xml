@@ -33,9 +33,10 @@
     <parameter key="database_user">sf2_run4fun</parameter>
     <parameter key="database_password">sf2_run4fun</parameter>
     <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">localhost</parameter>
-    <parameter key="mailer_user"></parameter>
-    <parameter key="mailer_password"></parameter>
+    <parameter key="mailer_host">smtp.gmail.com</parameter>
+    <parameter key="mailer_user">no-reply@idci-consulting.fr</parameter>
+    <parameter key="mailer_password">#no-repl</parameter>
+    <parameter key="mailer_port">465</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="secret">9611006fe7dea44ae9d0c76ea804b0e1dd9b202a</parameter>
     <parameter key="router_listener.class">Symfony\Bundle\FrameworkBundle\EventListener\RouterListener</parameter>
@@ -265,11 +266,12 @@
     <parameter key="swiftmailer.plugin.antiflood.threshold">99</parameter>
     <parameter key="swiftmailer.plugin.antiflood.sleep">0</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
+    <parameter key="swiftmailer.transport.smtp.class">Swift_Transport_EsmtpTransport</parameter>
     <parameter key="swiftmailer.transport.smtp.encryption">ssl</parameter>
     <parameter key="swiftmailer.transport.smtp.port">465</parameter>
     <parameter key="swiftmailer.transport.smtp.host">smtp.gmail.com</parameter>
-    <parameter key="swiftmailer.transport.smtp.username">nordine.rkaini</parameter>
-    <parameter key="swiftmailer.transport.smtp.password">maroc2.0.0.6</parameter>
+    <parameter key="swiftmailer.transport.smtp.username">no-reply@idci-consulting.fr</parameter>
+    <parameter key="swiftmailer.transport.smtp.password">#no-repl</parameter>
     <parameter key="swiftmailer.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.sender_address">null</parameter>
@@ -476,6 +478,10 @@
     </parameter>
   </parameters>
   <services>
+    <service id="coursebundle.listener.subscription" class="r4f\CourseBundle\EventListener\SubscriptionListener">
+      <tag name="kernel.event_listener" event="coursebundle.subscription_added" method="onSubscriptionAddedEvent"/>
+      <argument key="mailer" type="service" id="mailer"/>
+    </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -497,6 +503,14 @@
       <tag name="monolog.logger" channel="event"/>
       <argument type="service" id="service_container"/>
       <argument type="service" id="monolog.logger.event"/>
+      <call method="addListenerService">
+        <argument>coursebundle.subscription_added</argument>
+        <argument type="collection">
+          <argument>coursebundle.listener.subscription</argument>
+          <argument>onSubscriptionAddedEvent</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
       <call method="addListenerService">
         <argument>kernel.request</argument>
         <argument type="collection">
@@ -1251,7 +1265,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>502a44a8f3675</argument>
+            <argument>502e6c02affd6</argument>
           </service>
         </argument>
         <argument type="service">
@@ -1389,7 +1403,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>502a44a8f3675</argument>
+            <argument>502e6c02affd6</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -2387,6 +2401,9 @@
       <tag name="form.type" alias="r4f_user_registration"/>
       <argument>r4f\UserBundle\Entity\User</argument>
     </service>
+    <service id="r4fmanager" class="r4f\CourseBundle\Service\r4fManager">
+      <argument key="entityManager" type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
     <service id="fos_user.validator.unique" class="FOS\UserBundle\Validator\UniqueValidator">
       <tag name="validator.constraint_validator" alias="fos_user.validator.unique"/>
       <argument type="service" id="fos_user.user_manager"/>
@@ -2636,13 +2653,52 @@
         <argument type="service" id="monolog.handler.debug"/>
       </call>
     </service>
-    <service id="swiftmailer.transport" class="Swift_Transport_MailTransport">
+    <service id="swiftmailer.transport" class="Swift_Transport_EsmtpTransport">
       <argument type="service">
-        <service class="Swift_Transport_SimpleMailInvoker" public="false"/>
+        <service class="Swift_Transport_StreamBuffer" public="false">
+          <argument type="service">
+            <service class="Swift_StreamFilters_StringReplacementFilterFactory" public="false"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="collection">
+        <argument type="service">
+          <service class="Swift_Transport_Esmtp_AuthHandler" public="false">
+            <argument type="collection">
+              <argument type="service">
+                <service class="Swift_Transport_Esmtp_Auth_CramMd5Authenticator" public="false"/>
+              </argument>
+              <argument type="service">
+                <service class="Swift_Transport_Esmtp_Auth_LoginAuthenticator" public="false"/>
+              </argument>
+              <argument type="service">
+                <service class="Swift_Transport_Esmtp_Auth_PlainAuthenticator" public="false"/>
+              </argument>
+            </argument>
+          </service>
+        </argument>
       </argument>
       <argument type="service">
         <service class="Swift_Events_SimpleEventDispatcher" public="false"/>
       </argument>
+      <call method="setHost">
+        <argument>smtp.gmail.com</argument>
+      </call>
+      <call method="setPort">
+        <argument>465</argument>
+      </call>
+      <call method="setEncryption">
+        <argument>ssl</argument>
+      </call>
+      <call method="setUsername">
+        <argument>no-reply@idci-consulting.fr</argument>
+      </call>
+      <call method="setPassword">
+        <argument>#no-repl</argument>
+      </call>
+      <call method="setAuthMode">
+        <argument>login</argument>
+      </call>
       <call method="registerPlugin">
         <argument type="service" id="swiftmailer.plugin.messagelogger"/>
       </call>

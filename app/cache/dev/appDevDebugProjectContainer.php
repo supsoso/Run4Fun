@@ -160,6 +160,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'coursebundle.listener.subscription' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return r4f\CourseBundle\EventListener\SubscriptionListener A r4f\CourseBundle\EventListener\SubscriptionListener instance.
+     */
+    protected function getCoursebundle_Listener_SubscriptionService()
+    {
+        return $this->services['coursebundle.listener.subscription'] = new \r4f\CourseBundle\EventListener\SubscriptionListener($this->get('mailer'));
+    }
+
+    /**
      * Gets the 'data_collector.request' service.
      *
      * This service is shared.
@@ -304,6 +317,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['event_dispatcher'] = $instance = new \Symfony\Bundle\FrameworkBundle\Debug\TraceableEventDispatcher($this, $this->get('monolog.logger.event'));
 
+        $instance->addListenerService('coursebundle.subscription_added', array(0 => 'coursebundle.listener.subscription', 1 => 'onSubscriptionAddedEvent'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'router_listener', 1 => 'onEarlyKernelRequest'), 255);
         $instance->addListenerService('kernel.request', array(0 => 'router_listener', 1 => 'onKernelRequest'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'response_listener', 1 => 'onKernelResponse'), 0);
@@ -1381,6 +1395,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'r4fmanager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return r4f\CourseBundle\Service\r4fManager A r4f\CourseBundle\Service\r4fManager instance.
+     */
+    protected function getR4fmanagerService()
+    {
+        return $this->services['r4fmanager'] = new \r4f\CourseBundle\Service\r4fManager($this->get('doctrine.orm.default_entity_manager'));
+    }
+
+    /**
      * Gets the 'request' service.
      *
      * This service is shared.
@@ -1554,7 +1581,7 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('security.context');
         $b = $this->get('monolog.logger.security');
 
-        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '502a44a8f3675', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '502e6c02affd6', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
     }
 
     /**
@@ -1765,12 +1792,18 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return Swift_Transport_MailTransport A Swift_Transport_MailTransport instance.
+     * @return Swift_Transport_EsmtpTransport A Swift_Transport_EsmtpTransport instance.
      */
     protected function getSwiftmailer_TransportService()
     {
-        $this->services['swiftmailer.transport'] = $instance = new \Swift_Transport_MailTransport(new \Swift_Transport_SimpleMailInvoker(), new \Swift_Events_SimpleEventDispatcher());
+        $this->services['swiftmailer.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), new \Swift_Events_SimpleEventDispatcher());
 
+        $instance->setHost('smtp.gmail.com');
+        $instance->setPort(465);
+        $instance->setEncryption('ssl');
+        $instance->setUsername('no-reply@idci-consulting.fr');
+        $instance->setPassword('#no-repl');
+        $instance->setAuthMode('login');
         $instance->registerPlugin($this->get('swiftmailer.plugin.messagelogger'));
 
         return $instance;
@@ -2314,7 +2347,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('security.user_checker');
 
-        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('502a44a8f3675'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '9611006fe7dea44ae9d0c76ea804b0e1dd9b202a', 'main')));
+        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('502e6c02affd6'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '9611006fe7dea44ae9d0c76ea804b0e1dd9b202a', 'main')));
     }
 
     /**
@@ -2534,9 +2567,10 @@ class appDevDebugProjectContainer extends Container
             'database_user' => 'sf2_run4fun',
             'database_password' => 'sf2_run4fun',
             'mailer_transport' => 'smtp',
-            'mailer_host' => 'localhost',
-            'mailer_user' => '',
-            'mailer_password' => '',
+            'mailer_host' => 'smtp.gmail.com',
+            'mailer_user' => 'no-reply@idci-consulting.fr',
+            'mailer_password' => '#no-repl',
+            'mailer_port' => '465',
             'locale' => 'fr',
             'secret' => '9611006fe7dea44ae9d0c76ea804b0e1dd9b202a',
             'router_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\RouterListener',
@@ -2770,11 +2804,12 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.plugin.antiflood.threshold' => 99,
             'swiftmailer.plugin.antiflood.sleep' => 0,
             'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
+            'swiftmailer.transport.smtp.class' => 'Swift_Transport_EsmtpTransport',
             'swiftmailer.transport.smtp.encryption' => 'ssl',
             'swiftmailer.transport.smtp.port' => 465,
             'swiftmailer.transport.smtp.host' => 'smtp.gmail.com',
-            'swiftmailer.transport.smtp.username' => 'nordine.rkaini',
-            'swiftmailer.transport.smtp.password' => 'maroc2.0.0.6',
+            'swiftmailer.transport.smtp.username' => 'no-reply@idci-consulting.fr',
+            'swiftmailer.transport.smtp.password' => '#no-repl',
             'swiftmailer.transport.smtp.auth_mode' => 'login',
             'swiftmailer.spool.enabled' => false,
             'swiftmailer.sender_address' => NULL,

@@ -3,3 +3,4 @@
 [2012-08-08 13:22:36] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /" (uncaught exception) at C:\wamp\www\Run4Fun\app\cache\prod\classes.php line 4584 [] []
 [2012-08-10 21:05:06] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /register" (uncaught exception) at C:\wamp\www\Run4Fun\app\cache\prod\classes.php line 4584 [] []
 [2012-08-13 08:53:48] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /" (uncaught exception) at C:\wamp\www\Run4Fun\app\cache\prod\classes.php line 4584 [] []
+[2012-08-16 09:53:20] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /" (uncaught exception) at C:\wamp\www\Run4Fun\app\cache\prod\classes.php line 4584 [] []

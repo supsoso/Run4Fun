@@ -50,16 +50,18 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: mail
+    transport:  smtp
     encryption: ssl
     auth_mode:  login
     host:       smtp.gmail.com
-    username:   nordine.rkaini
-    password:   maroc2.0.0.6
-
+    username:   no-reply@idci-consulting.fr
+    password:   '#no-repl'
+    port: 465
+    
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
 fos_user:
     db_driver:     orm
     firewall_name: main
@@ -73,3 +75,11 @@ fos_user:
     #          sender_name:    Admin de run4fun.fr
     #      enabled:    true 
     #      template:   r4fUserBundle:Registration:registration.email.twig
+
+services:
+    coursebundle.listener.subscription:
+        class: r4f\CourseBundle\EventListener\SubscriptionListener
+        arguments:
+            mailer: "@mailer"
+        tags:
+            - { name: kernel.event_listener, event: coursebundle.subscription_added, method: onSubscriptionAddedEvent }

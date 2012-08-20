@@ -2,6 +2,8 @@ parameters:
 #    r4f_course.example.class: r4f\CourseBundle\Example
 
 services:
-#    r4f_course.example:
-#        class: %r4f_course.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    r4fmanager:
+        class: r4f\CourseBundle\Service\r4fManager
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+

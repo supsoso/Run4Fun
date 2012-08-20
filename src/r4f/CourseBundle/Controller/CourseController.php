@@ -9,6 +9,7 @@ use r4f\CourseBundle\Form\CourseType;
 use r4f\CourseBundle\Entity\Course;
 use r4f\CourseBundle\Entity\Address;
 use r4f\CourseBundle\Entity\Subscription;
+use r4f\CourseBundle\Event\SubscriptionEvent;
 
 /**
  * Course controller.
@@ -50,35 +51,83 @@ class CourseController extends Controller
     
     public function listAction()
     {    
-        $liste_courses = $this->getDoctrine()
+        $courses = $this->getDoctrine()
             ->getEntityManager()
             ->getRepository('r4fCourseBundle:Course')
             ->CoursesAll()
         ;
             
         return $this->render('r4fCourseBundle:Course:list.html.twig', array(
-            'liste_courses' => $liste_courses,
+            'courses' => $courses,
         ));
     }
     
     public function selectCourseAction($id)
     {
-        $selectCourse = $this->getDoctrine()
-                   ->getEntityManager()
-                   ->getRepository('r4fCourseBundle:Course')
+        $course = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Course')
+            ->find($id)
         ;
-
-        $course = $selectCourse->find($id);
         
-        return $this->render('r4fCourseBundle:Course:selectcourse.html.twig', array(
+        return $this->render('r4fCourseBundle:Course:selectCourse.html.twig', array(
             'course' => $course,
-            'id' => $id,
         ));
     }
     
     public function joinCourseAction($id)
     {
-        return $this->render('r4fCourseBundle:Course:joincourse.html.twig', array('id' => $id));
+        $course = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Course')
+            ->find($id)
+        ;
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        /* SERVICE */
+        if($this->container->get('r4fmanager')->isCourseSubscriber($user, $course)) {
+            throw $this->createNotFoundException('You are already registred at this course !');
+        }
+      
+        $subscription = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Subscription')
+            ->subscribe($user, $course)
+        ;
+        
+        /* EVENT DISPATCHER DESACTIVATE */
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch('coursebundle.subscription_added', new SubscriptionEvent($subscription));
+
+        $this->get('session')->setFlash('notice', 'Subscription OK !');
+        
+        return $this->render('r4fCourseBundle:Course:joinCourse.html.twig', array('course' => $course));
+    }
+    
+    public function leaveCourseAction($id)
+    {
+        $course = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Course')
+            ->find($id)
+        ;        
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $isUnsubscribed = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Subscription')
+            ->unSubscribe($user, $course)
+        ;
+        
+        if($isUnsubscribed) {
+            $this->get('session')->setFlash('notice', 'Unsubscribe done');
+        } else {
+             $this->get('session')->setFlash('error', 'Error occur !');
+        }
+
+        return $this->render('r4fCourseBundle:Course:leaveCourse.html.twig', array('course' => $course));
     }
 
     public function createCourseAction()
@@ -110,7 +159,7 @@ class CourseController extends Controller
         }        
    
         return $this->render(
-            'r4fCourseBundle:Course:createcourse.html.twig',
+            'r4fCourseBundle:Course:createCourse.html.twig',
             array('form' => $form->createView())
         );
     }
@@ -127,5 +176,32 @@ class CourseController extends Controller
         ;
         
         return array('users' => $users);
+    }
+    
+    /**
+     * @Route("/course/{id}/action")
+     */
+    public function userSubscriptionAction($id)
+    {
+        $course = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('r4fCourseBundle:Course')
+            ->find($id)
+        ;
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        /* SERVICE */
+        if($this->container->get('r4fmanager')->isCourseSubscriber($user, $course)) {
+            return $this->render(
+                'r4fCourseBundle:Course:userCourseUnsubscribe.html.twig',
+                array('course' => $course)
+            );
+        }
+        
+        return $this->render(
+            'r4fCourseBundle:Course:userCourseSubscribe.html.twig',
+            array('course' => $course)
+        );
     }
 }

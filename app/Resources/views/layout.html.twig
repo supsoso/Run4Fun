@@ -8,6 +8,10 @@
 		{% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
 		{% endblock %}
+        {% block javascript %}
+            <script type="text/javascript" src="{{ asset('js/jquery-latest.pack.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/r4fuser-infobulle.js') }}"></script>
+        {% endblock %}
 	</head>
 
 	<body>
@@ -27,7 +31,7 @@
 						<li><a href="{{ path('user') }}">Accueil Run</a></li>
 						<li>
 						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						<a href="{{ path('fos_user_security_logout') }}">Logout / {{ app.user.username }} </a>
+						<a href="{{ path('fos_user_security_logout') }}">Logout => {{ app.user.username }} </a>
 						{% else %}
 						<a href="{{ path('fos_user_security_login') }}">Login / Register</a>
 						{% endif %}
@@ -38,7 +42,7 @@
 					</ul>
 					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					Connecté en tant que {{ app.user.username }} <br />
-					Mail: {{ app.user.email }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+					Mail: {{ app.user.email }} 
 					<br />
 					<br />
 					<a href="{{ path('select_user', { 'id': app.user.id  }) }}">Mon espace Runner</a>
