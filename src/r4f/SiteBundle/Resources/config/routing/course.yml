@@ -1,0 +1,10 @@
+course:
+    pattern:  /
+    defaults: { _controller: "r4fCourseBundle:Course:index" }
+
+course_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fCourseBundle:Course:show" }
+
+
+

@@ -1,0 +1,19 @@
+{% extends "r4fSiteBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+	<h2>Page Courses/create</h2>
+	<br />
+	<h3>Ajout d'un parcours</h3>
+	<img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
+	<br />
+	<form method="post" {{ form_enctype(form) }}>
+	{{ form_widget(form) }}
+	<input type="submit" />
+	</form>
+	
+
+{% endblock %}

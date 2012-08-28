@@ -1,0 +1,24 @@
+{% extends "r4fUserBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+	<h3>REGISTER</h3>
+	<br />
+
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+    </form>
+
+        {% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+        {% endfor %}
+
+{% endblock %}

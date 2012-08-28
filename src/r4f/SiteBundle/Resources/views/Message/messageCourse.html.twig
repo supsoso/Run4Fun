@@ -1,0 +1,40 @@
+{% extends "r4fSiteBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+
+	<h2>Page Select course {{ course.id }}</h2>
+	<br />
+	<img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
+    {% render "r4fSiteBundle:Course:userSubscription" with {'id': course.id} %}
+	<br />
+	<br />
+	<h6>Id course: {{ course.id }}</h6>
+	<br />
+	<h6>description: {{ course.description }}</h6>
+	<br />
+	<h6>length: {{ course.length }} Km</h6>
+	<br />
+	<h6>meeting Point: {{ course.meetingPoint }}</h6>
+    <br/>
+    <br/>
+    <ul>
+    <li id="listusers">
+    {% render "r4fSiteBundle:Course:listUsers" with {'id': course.id} %}
+    </li>
+    </ul>
+    <br />
+    <br />
+    
+    {{ messages.text }}
+ 
+    <h2>Deposer un commentaire</h2>
+    <br />
+    <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" />
+    </form>
+{% endblock %}

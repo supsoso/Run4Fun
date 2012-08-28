@@ -1,0 +1,10 @@
+map:
+    pattern:  /
+    defaults: { _controller: "r4fCourseBundle:Map:index" }
+
+map_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fCourseBundle:Map:show" }
+
+
+

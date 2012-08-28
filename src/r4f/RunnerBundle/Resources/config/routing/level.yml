@@ -1,0 +1,30 @@
+level:
+    pattern:  /
+    defaults: { _controller: "r4fUserBundle:Level:index" }
+
+level_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fUserBundle:Level:show" }
+
+level_new:
+    pattern:  /new
+    defaults: { _controller: "r4fUserBundle:Level:new" }
+
+level_create:
+    pattern:  /create
+    defaults: { _controller: "r4fUserBundle:Level:create" }
+    requirements: { _method: post }
+
+level_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "r4fUserBundle:Level:edit" }
+
+level_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "r4fUserBundle:Level:update" }
+    requirements: { _method: post }
+
+level_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "r4fUserBundle:Level:delete" }
+    requirements: { _method: post }

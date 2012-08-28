@@ -1,0 +1,10 @@
+subscription:
+    pattern:  /
+    defaults: { _controller: "r4fCourseBundle:Subscription:index" }
+
+subscription_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "r4fCourseBundle:Subscription:show" }
+
+
+

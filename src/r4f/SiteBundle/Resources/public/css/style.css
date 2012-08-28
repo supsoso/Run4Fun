@@ -1,0 +1,33 @@
+/* 
+ * Popin 4 Users
+ */
+.users > li {
+  position: relative;
+  list-style-type: none;
+}
+
+.users > li > .details{
+  display: block;
+  color:#09c;
+  position:absolute;     
+  top:23px;
+  background:rgba(0,0,0,.9);
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  box-shadow:0 0 2px rgba(0,0,0,.5);
+  -moz-box-shadow:0 0 2px rgba(0,0,0,.5);
+  -webkit-box-shadow:0 0 2px rgba(0,0,0,.5);
+  transition: 2s;
+  -moz-transition: 2s;
+  -webkit-transition: 2s;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.users > li:hover .details{
+  width: 150px;
+  height: 80px;
+}

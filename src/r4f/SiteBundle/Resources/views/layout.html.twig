@@ -1,0 +1,66 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+	Layout du Bundle Site - {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bundles/r4fsite/css/style.css') }}" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+        <div id="header" class="hero-unit">
+            <div style="width:270px;">
+            <img src="{{ asset('images/running_man_logo.jpg') }}"/>
+            <h1>Run4Fun.fr</h1>
+            <p>Site communautaire de Running</p>
+            </div>
+        </div>
+
+    <div class="row">
+        <div id="menu" class="span3">
+            <h3>Menu</h3>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="{{ path('r4f_runner_user_index') }}">Accueil Run</a></li>
+                <li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}">Logout / {{ app.user.username }} </a>
+                {% else %}
+                <a href="{{ path('fos_user_security_login') }}">Login / Register</a>
+                {% endif %}
+                </li>
+                <li><a href="{{ path('r4f_runner_user_list') }}">Liste des Users</a></li>
+                <li><a href="{{ path('r4f_site_course_list') }}">Liste des parcours</a></li>
+                <li><a href="{{ path('r4f_site_course_new') }}">Creer un nouveau parcours</a></li>
+            </ul>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            Connecté en tant que {{ app.user.username }} <br />
+            Mail: {{ app.user.email }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            <br />
+            <br />
+            <a href="{{ path('r4f_runner_user_select', { 'id': app.user.id }) }}">Mon espace Runner</a>
+            {% endif %}
+        </div>
+        <div id="content" class="span9">
+        {% block r4fSite_body %}
+        {% endblock %}
+        </div>
+    </div>
+
+    <hr>
+
+    <footer class="modal-footer">
+    <p>Idci Consulting &copy; 2012 vous accompagne pour vos projets innovants. Site en cours de Developpement</p>
+    </footer>
+    </div>
+
+	{% for key, flash in app.session.getFlashes() %}
+		<div class="alert alert-{{ key }}">
+			{{ flash }}
+		</div>
+	{% endfor %}
+
+{% endblock %}

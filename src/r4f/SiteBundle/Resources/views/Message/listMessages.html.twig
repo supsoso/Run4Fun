@@ -1,0 +1,9 @@
+<h2>Messages</h2>
+<ul class="messages">
+{% for message in messages %}
+	<li>
+        <span class="details">{{ message.text }}</span>
+        <br />
+    </li>
+{% endfor %}
+</ul>

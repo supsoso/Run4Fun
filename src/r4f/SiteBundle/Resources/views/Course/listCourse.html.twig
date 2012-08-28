@@ -1,0 +1,14 @@
+<ul class="nav nav-pills nav-stacked">
+  {% for course in courses %}
+    <li><a href="{{ path('r4f_site_course_select', { 'id': course.id  }) }}"><img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/></a></li>
+    <li>Id: {{ course.id }}</li>
+    <li>Description: {{ course.description }}</li>
+    <li>Distance: {{ course.length }} Km</li>
+    <li>Meeting Point: {{ course.meetingPoint }}</li>
+    <li id="listusers">
+        {% render "r4fSiteBundle:Course:listUsers" with {'id': course.id} %}
+    </li>
+    <br />
+  {% endfor %}
+</ul>
+

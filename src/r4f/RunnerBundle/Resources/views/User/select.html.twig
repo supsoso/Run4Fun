@@ -1,0 +1,18 @@
+{% extends "r4fRunnerBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+
+	<h1>Espace Runner</h1>
+    <img src="http://www.kidprintables.com/coloring/sports/runner.gif" title="runner" style="width: 170px;"/>
+
+	<h3> Fiche runner id: {{ id }} </h3>
+    <br />
+	<h6> {{ user.username }} </h6>
+	<h6> {{ user.email }} </h6>
+
+{% endblock %}
+
