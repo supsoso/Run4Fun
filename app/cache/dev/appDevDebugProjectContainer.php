@@ -42,7 +42,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAcmeUser_Registration_Form_TypeService()
     {
-        return $this->services['acme_user.registration.form.type'] = new \r4f\UserBundle\Form\Type\RegistrationFormType('r4f\\UserBundle\\Entity\\User');
+        return $this->services['acme_user.registration.form.type'] = new \r4f\UserBundle\Form\Type\RegistrationFormType('r4f\\RunnerBundle\\Entity\\User');
     }
 
     /**
@@ -81,8 +81,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AsseticBundle', 'C:/wamp/www/Run4Fun/app/Resources/AsseticBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AsseticBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\Symfony\\Bundle\\AsseticBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioFrameworkExtraBundle', 'C:/wamp/www/Run4Fun/app/Resources/SensioFrameworkExtraBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioFrameworkExtraBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\Sensio\\Bundle\\FrameworkExtraBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'JMSSecurityExtraBundle', 'C:/wamp/www/Run4Fun/app/Resources/JMSSecurityExtraBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'JMSSecurityExtraBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\JMS\\SecurityExtraBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fUserBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fUserBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fUserBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\UserBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fCourseBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fCourseBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fCourseBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\CourseBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fRunnerBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fRunnerBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fRunnerBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\RunnerBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fSiteBundle', 'C:/wamp/www/Run4Fun/app/Resources/r4fSiteBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'r4fSiteBundle', 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\SiteBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'FOSUserBundle', 'C:/wamp/www/Run4Fun/app/Resources/FOSUserBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'FOSUserBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\FOS\\UserBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', 'C:/wamp/www/Run4Fun/app/Resources/WebProfilerBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', 'C:/wamp/www/Run4Fun/app/Resources/SensioDistributionBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\Sensio\\Bundle\\DistributionBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
@@ -157,19 +157,6 @@ class appDevDebugProjectContainer extends Container
         $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, 'C:/wamp/www/Run4Fun/app/Resources');
 
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine'))));
-    }
-
-    /**
-     * Gets the 'coursebundle.listener.subscription' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return r4f\CourseBundle\EventListener\SubscriptionListener A r4f\CourseBundle\EventListener\SubscriptionListener instance.
-     */
-    protected function getCoursebundle_Listener_SubscriptionService()
-    {
-        return $this->services['coursebundle.listener.subscription'] = new \r4f\CourseBundle\EventListener\SubscriptionListener($this->get('mailer'));
     }
 
     /**
@@ -254,19 +241,19 @@ class appDevDebugProjectContainer extends Container
 
         $e = new \Symfony\Bridge\Doctrine\Annotations\IndexedReader($a);
 
-        $f = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($e, array(0 => 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\UserBundle\\Entity', 1 => 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\CourseBundle\\Entity'));
+        $f = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($e, array(0 => 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\RunnerBundle\\Entity', 1 => 'C:\\wamp\\www\\Run4Fun\\src\\r4f\\SiteBundle\\Entity'));
 
         $g = new \Symfony\Bridge\Doctrine\Mapping\Driver\XmlDriver(array(0 => 'C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\FOS\\UserBundle\\Resources\\config\\doctrine'));
         $g->setNamespacePrefixes(array('C:\\wamp\\www\\Run4Fun\\vendor\\bundles\\FOS\\UserBundle\\Resources\\config\\doctrine' => 'FOS\\UserBundle\\Entity'));
         $g->setGlobalBasename('mapping');
 
         $h = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $h->addDriver($f, 'r4f\\UserBundle\\Entity');
-        $h->addDriver($f, 'r4f\\CourseBundle\\Entity');
+        $h->addDriver($f, 'r4f\\RunnerBundle\\Entity');
+        $h->addDriver($f, 'r4f\\SiteBundle\\Entity');
         $h->addDriver($g, 'FOS\\UserBundle\\Entity');
 
         $i = new \Doctrine\ORM\Configuration();
-        $i->setEntityNamespaces(array('r4fUserBundle' => 'r4f\\UserBundle\\Entity', 'r4fCourseBundle' => 'r4f\\CourseBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity'));
+        $i->setEntityNamespaces(array('r4fRunnerBundle' => 'r4f\\RunnerBundle\\Entity', 'r4fSiteBundle' => 'r4f\\SiteBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity'));
         $i->setMetadataCacheImpl($b);
         $i->setQueryCacheImpl($c);
         $i->setResultCacheImpl($d);
@@ -317,7 +304,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['event_dispatcher'] = $instance = new \Symfony\Bundle\FrameworkBundle\Debug\TraceableEventDispatcher($this, $this->get('monolog.logger.event'));
 
-        $instance->addListenerService('coursebundle.subscription_added', array(0 => 'coursebundle.listener.subscription', 1 => 'onSubscriptionAddedEvent'), 0);
+        $instance->addListenerService('sitebundle.subscription_added', array(0 => 'sitebundle.listener.subscription', 1 => 'onSubscriptionAddedEvent'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'router_listener', 1 => 'onEarlyKernelRequest'), 255);
         $instance->addListenerService('kernel.request', array(0 => 'router_listener', 1 => 'onKernelRequest'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'response_listener', 1 => 'onKernelResponse'), 0);
@@ -392,7 +379,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_FactoryService()
     {
-        return $this->services['form.factory'] = new \Symfony\Component\Form\FormFactory(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('field' => 'form.type.field', 'form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'csrf' => 'form.type.csrf', 'entity' => 'form.type.entity', 'r4f_user_registration' => 'acme_user.registration.form.type', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type'), array('field' => array(0 => 'form.type_extension.field'), 'form' => array(0 => 'form.type_extension.csrf')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))));
+        return $this->services['form.factory'] = new \Symfony\Component\Form\FormFactory(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('r4f_user_registration' => 'acme_user.registration.form.type', 'field' => 'form.type.field', 'form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'csrf' => 'form.type.csrf', 'entity' => 'form.type.entity', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type'), array('field' => array(0 => 'form.type_extension.field'), 'form' => array(0 => 'form.type_extension.csrf')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))));
     }
 
     /**
@@ -920,7 +907,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFosUser_Profile_Form_TypeService()
     {
-        return $this->services['fos_user.profile.form.type'] = new \FOS\UserBundle\Form\Type\ProfileFormType('r4f\\UserBundle\\Entity\\User');
+        return $this->services['fos_user.profile.form.type'] = new \FOS\UserBundle\Form\Type\ProfileFormType('r4f\\RunnerBundle\\Entity\\User');
     }
 
     /**
@@ -933,7 +920,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFosUser_Registration_FormService()
     {
-        return $this->services['fos_user.registration.form'] = $this->get('form.factory')->createNamed('fos_user_registration', 'fos_user_registration_form', '', array('validation_groups' => array(0 => 'Registration', 1 => 'Default')));
+        return $this->services['fos_user.registration.form'] = $this->get('form.factory')->createNamed('r4f_user_registration', 'fos_user_registration_form', '', array('validation_groups' => array(0 => 'Registration', 1 => 'Default')));
     }
 
     /**
@@ -963,7 +950,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFosUser_Registration_Form_TypeService()
     {
-        return $this->services['fos_user.registration.form.type'] = new \FOS\UserBundle\Form\Type\RegistrationFormType('r4f\\UserBundle\\Entity\\User');
+        return $this->services['fos_user.registration.form.type'] = new \FOS\UserBundle\Form\Type\RegistrationFormType('r4f\\RunnerBundle\\Entity\\User');
     }
 
     /**
@@ -1047,7 +1034,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('fos_user.util.email_canonicalizer');
 
-        return $this->services['fos_user.user_manager'] = new \FOS\UserBundle\Entity\UserManager($this->get('security.encoder_factory'), $a, $a, $this->get('doctrine')->getEntityManager(NULL), 'r4f\\UserBundle\\Entity\\User');
+        return $this->services['fos_user.user_manager'] = new \FOS\UserBundle\Entity\UserManager($this->get('security.encoder_factory'), $a, $a, $this->get('doctrine')->getEntityManager(NULL), 'r4f\\RunnerBundle\\Entity\\User');
     }
 
     /**
@@ -1400,11 +1387,11 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return r4f\CourseBundle\Service\r4fManager A r4f\CourseBundle\Service\r4fManager instance.
+     * @return r4f\SiteBundle\Service\r4fManager A r4f\SiteBundle\Service\r4fManager instance.
      */
     protected function getR4fmanagerService()
     {
-        return $this->services['r4fmanager'] = new \r4f\CourseBundle\Service\r4fManager($this->get('doctrine.orm.default_entity_manager'));
+        return $this->services['r4fmanager'] = new \r4f\SiteBundle\Service\r4fManager($this->get('doctrine.orm.default_entity_manager'));
     }
 
     /**
@@ -1488,6 +1475,19 @@ class appDevDebugProjectContainer extends Container
         $d->addLoader($c);
 
         return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router'), $d);
+    }
+
+    /**
+     * Gets the 'runnerbundle.registration.form.type' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return r4f\RunnerBundle\Form\Type\RegistrationFormType A r4f\RunnerBundle\Form\Type\RegistrationFormType instance.
+     */
+    protected function getRunnerbundle_Registration_Form_TypeService()
+    {
+        return $this->services['runnerbundle.registration.form.type'] = new \r4f\RunnerBundle\Form\Type\RegistrationFormType('r4f\\RunnerBundle\\Entity\\User');
     }
 
     /**
@@ -1581,7 +1581,7 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('security.context');
         $b = $this->get('monolog.logger.security');
 
-        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '502e6c02affd6', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.login'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'login', $b, $this->get('event_dispatcher')), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '503b4045e43a1', $b), 3 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $this->get('security.http_utils'), NULL, NULL, NULL, $b));
     }
 
     /**
@@ -1771,6 +1771,19 @@ class appDevDebugProjectContainer extends Container
     protected function getSessionListenerService()
     {
         return $this->services['session_listener'] = new \Symfony\Bundle\FrameworkBundle\EventListener\SessionListener($this, true);
+    }
+
+    /**
+     * Gets the 'sitebundle.listener.subscription' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return r4f\SiteBundle\EventListener\SubscriptionListener A r4f\SiteBundle\EventListener\SubscriptionListener instance.
+     */
+    protected function getSitebundle_Listener_SubscriptionService()
+    {
+        return $this->services['sitebundle.listener.subscription'] = new \r4f\SiteBundle\EventListener\SubscriptionListener($this->get('mailer'));
     }
 
     /**
@@ -2347,7 +2360,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('security.user_checker');
 
-        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('502e6c02affd6'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '9611006fe7dea44ae9d0c76ea804b0e1dd9b202a', 'main')));
+        return $this->services['security.authentication.manager'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('503b4045e43a1'), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $a, 'main', $this->get('security.encoder_factory'), true), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, '9611006fe7dea44ae9d0c76ea804b0e1dd9b202a', 'main')));
     }
 
     /**
@@ -2551,8 +2564,8 @@ class appDevDebugProjectContainer extends Container
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
-                'r4fUserBundle' => 'r4f\\UserBundle\\r4fUserBundle',
-                'r4fCourseBundle' => 'r4f\\CourseBundle\\r4fCourseBundle',
+                'r4fRunnerBundle' => 'r4f\\RunnerBundle\\r4fRunnerBundle',
+                'r4fSiteBundle' => 'r4f\\SiteBundle\\r4fSiteBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -2882,8 +2895,8 @@ class appDevDebugProjectContainer extends Container
                 6 => 'AsseticBundle',
                 7 => 'SensioFrameworkExtraBundle',
                 8 => 'JMSSecurityExtraBundle',
-                9 => 'r4fUserBundle',
-                10 => 'r4fCourseBundle',
+                9 => 'r4fRunnerBundle',
+                10 => 'r4fSiteBundle',
                 11 => 'FOSUserBundle',
                 12 => 'WebProfilerBundle',
                 13 => 'SensioDistributionBundle',
@@ -2941,7 +2954,7 @@ class appDevDebugProjectContainer extends Container
             'fos_user.registration.confirmation.template' => 'FOSUserBundle:Registration:email.txt.twig',
             'fos_user.firewall_name' => 'main',
             'fos_user.model_manager_name' => NULL,
-            'fos_user.model.user.class' => 'r4f\\UserBundle\\Entity\\User',
+            'fos_user.model.user.class' => 'r4f\\RunnerBundle\\Entity\\User',
             'fos_user.template.engine' => 'twig',
             'fos_user.template.theme' => 'FOSUserBundle::form.html.twig',
             'fos_user.profile.form.type' => 'fos_user_profile',
@@ -2954,7 +2967,7 @@ class appDevDebugProjectContainer extends Container
                 'webmaster@example.com' => 'webmaster',
             ),
             'fos_user.registration.confirmation.enabled' => false,
-            'fos_user.registration.form.type' => 'fos_user_registration',
+            'fos_user.registration.form.type' => 'r4f_user_registration',
             'fos_user.registration.form.name' => 'fos_user_registration_form',
             'fos_user.registration.form.validation_groups' => array(
                 0 => 'Registration',

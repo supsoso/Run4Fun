@@ -23,19 +23,16 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
-       'courses_list' => true,
-       'select_course' => true,
-       'join_course' => true,
-       'leave_course' => true,
-       'create_course' => true,
-       'user' => true,
-       'user_show' => true,
-       'user_create' => true,
-       'user_edit' => true,
-       'user_update' => true,
-       'user_delete' => true,
-       'select_user' => true,
-       'list_users' => true,
+       'r4f_site_course_list' => true,
+       'r4f_site_course_select' => true,
+       'r4f_site_course_join' => true,
+       'r4f_site_course_leave' => true,
+       'r4f_site_course_new' => true,
+       'r4f_site_course_listusers' => true,
+       'r4f_site_course_usersubscription' => true,
+       'r4f_runner_user_index' => true,
+       'r4f_runner_user_list' => true,
+       'r4f_runner_user_select' => true,
        'fos_user_security_login' => true,
        'fos_user_security_check' => true,
        'fos_user_security_logout' => true,
@@ -123,69 +120,54 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
     }
 
-    private function getcourses_listRouteInfo()
+    private function getr4f_site_course_listRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/list',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/list',  ),));
     }
 
-    private function getselect_courseRouteInfo()
+    private function getr4f_site_course_selectRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/courses',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::selectAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
-    private function getjoin_courseRouteInfo()
+    private function getr4f_site_course_joinRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joinCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::joinAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/join',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
-    private function getleave_courseRouteInfo()
+    private function getr4f_site_course_leaveRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::leaveCourseAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/leave',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::leaveAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'text',    1 => '/leave',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/courses',  ),));
     }
 
-    private function getcreate_courseRouteInfo()
+    private function getr4f_site_course_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createCourseAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/new',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/courses/new',  ),));
     }
 
-    private function getuserRouteInfo()
+    private function getr4f_site_course_listusersRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::listUsersAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
     }
 
-    private function getuser_showRouteInfo()
+    private function getr4f_site_course_usersubscriptionRouteInfo()
     {
-        return array(array (  0 => 'id',  1 => 'pseudo',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'pseudo',  ),  1 =>   array (    0 => 'text',    1 => '/show',  ),  2 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::userSubscriptionAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/action',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/course',  ),));
     }
 
-    private function getuser_createRouteInfo()
+    private function getr4f_runner_user_indexRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/create',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 
-    private function getuser_editRouteInfo()
+    private function getr4f_runner_user_listRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
+        return array(array (), array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),));
     }
 
-    private function getuser_updateRouteInfo()
+    private function getr4f_runner_user_selectRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
-    }
-
-    private function getuser_deleteRouteInfo()
-    {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),));
-    }
-
-    private function getselect_userRouteInfo()
-    {
-        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectUserAction',), array (  'id' => '\\d+',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '\\d+',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/user',  ),));
-    }
-
-    private function getlist_usersRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listUsersAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/users',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::selectAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/user',  ),));
     }
 
     private function getfos_user_security_loginRouteInfo()

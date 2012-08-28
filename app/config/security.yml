@@ -23,3 +23,5 @@ security:
                 key:         %secret%
             anonymous:       false
             logout:          true
+
+

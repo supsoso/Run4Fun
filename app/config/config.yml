@@ -65,21 +65,34 @@ jms_security_extra:
 fos_user:
     db_driver:     orm
     firewall_name: main
-    user_class:    r4f\UserBundle\Entity\User
-    #registration:
-    #    form:
-    #        type: r4f_user_registration
+    user_class:    r4f\RunnerBundle\Entity\User
+    registration:
+        form:
+            type: r4f_user_registration
     #    confirmation:
     #      from_email: 
     #          address:        nordine.rkaini@gmail.com
     #          sender_name:    Admin de run4fun.fr
     #      enabled:    true 
     #      template:   r4fUserBundle:Registration:registration.email.twig
+    
+#stof_doctrine_extensions:
+#       default_locale: en_us
+#       translation_fallback: true
+#       orm:
+#           default:
+#             timestampable: true
+#             translatable: true
 
 services:
-    coursebundle.listener.subscription:
-        class: r4f\CourseBundle\EventListener\SubscriptionListener
+    sitebundle.listener.subscription:
+        class: r4f\SiteBundle\EventListener\SubscriptionListener
         arguments:
             mailer: "@mailer"
         tags:
-            - { name: kernel.event_listener, event: coursebundle.subscription_added, method: onSubscriptionAddedEvent }
+            - { name: kernel.event_listener, event: sitebundle.subscription_added, method: onSubscriptionAddedEvent }
+    runnerbundle.registration.form.type:
+        class: r4f\RunnerBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: r4f_user_registration }

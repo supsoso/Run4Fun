@@ -1,9 +1,0 @@
-parameters:
-#    r4f_course.example.class: r4f\CourseBundle\Example
-
-services:
-    r4fmanager:
-        class: r4f\CourseBundle\Service\r4fManager
-        arguments:
-            entityManager: "@doctrine.orm.entity_manager"
-

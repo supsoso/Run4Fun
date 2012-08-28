@@ -84,87 +84,57 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // courses_list
+        // r4f_site_course_list
         if ($pathinfo === '/courses/list') {
-            return array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::listAction',  '_route' => 'courses_list',);
+            return array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::listAction',  '_route' => 'r4f_site_course_list',);
         }
 
-        // select_course
+        // r4f_site_course_select
         if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::selectCourseAction',)), array('_route' => 'select_course'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::selectAction',)), array('_route' => 'r4f_site_course_select'));
         }
 
-        // join_course
+        // r4f_site_course_join
         if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)/join$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::joinCourseAction',)), array('_route' => 'join_course'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::joinAction',)), array('_route' => 'r4f_site_course_join'));
         }
 
-        // leave_course
+        // r4f_site_course_leave
         if (0 === strpos($pathinfo, '/courses') && preg_match('#^/courses/(?P<id>\\d+)/leave$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::leaveCourseAction',)), array('_route' => 'leave_course'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::leaveAction',)), array('_route' => 'r4f_site_course_leave'));
         }
 
-        // create_course
+        // r4f_site_course_new
         if ($pathinfo === '/courses/new') {
-            return array (  '_controller' => 'r4f\\CourseBundle\\Controller\\CourseController::createCourseAction',  '_route' => 'create_course',);
+            return array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::newAction',  '_route' => 'r4f_site_course_new',);
         }
 
-        // user
+        // r4f_site_course_listusers
+        if (preg_match('#^/(?P<id>[^/]+?)/users$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::listUsersAction',)), array('_route' => 'r4f_site_course_listusers'));
+        }
+
+        // r4f_site_course_usersubscription
+        if (0 === strpos($pathinfo, '/course') && preg_match('#^/course/(?P<id>[^/]+?)/action$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\SiteBundle\\Controller\\CourseController::userSubscriptionAction',)), array('_route' => 'r4f_site_course_usersubscription'));
+        }
+
+        // r4f_runner_user_index
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'user');
+                return $this->redirect($pathinfo.'/', 'r4f_runner_user_index');
             }
-            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
+            return array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::indexAction',  '_route' => 'r4f_runner_user_index',);
         }
 
-        // user_show
-        if (preg_match('#^/(?P<id>[^/]+?)/show/(?P<pseudo>[^/]+?)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::showAction',)), array('_route' => 'user_show'));
-        }
-
-        // user_create
-        if ($pathinfo === '/create') {
-            if ($this->context->getMethod() != 'POST') {
-                $allow[] = 'POST';
-                goto not_user_create;
-            }
-            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::createAction',  '_route' => 'user_create',);
-        }
-        not_user_create:
-
-        // user_edit
-        if (preg_match('#^/(?P<id>[^/]+?)/edit$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::editAction',)), array('_route' => 'user_edit'));
-        }
-
-        // user_update
-        if (preg_match('#^/(?P<id>[^/]+?)/update$#s', $pathinfo, $matches)) {
-            if ($this->context->getMethod() != 'POST') {
-                $allow[] = 'POST';
-                goto not_user_update;
-            }
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::updateAction',)), array('_route' => 'user_update'));
-        }
-        not_user_update:
-
-        // user_delete
-        if (preg_match('#^/(?P<id>[^/]+?)/delete$#s', $pathinfo, $matches)) {
-            if ($this->context->getMethod() != 'POST') {
-                $allow[] = 'POST';
-                goto not_user_delete;
-            }
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::deleteAction',)), array('_route' => 'user_delete'));
-        }
-        not_user_delete:
-
-        // select_user
-        if (0 === strpos($pathinfo, '/user') && preg_match('#^/user/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::selectUserAction',)), array('_route' => 'select_user'));
-        }
-
-        // list_users
+        // r4f_runner_user_list
         if ($pathinfo === '/users') {
-            return array (  '_controller' => 'r4f\\UserBundle\\Controller\\UserController::listUsersAction',  '_route' => 'list_users',);
+            return array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::listAction',  '_route' => 'r4f_runner_user_list',);
+        }
+
+        // r4f_runner_user_select
+        if (0 === strpos($pathinfo, '/user') && preg_match('#^/user/(?P<id>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'r4f\\RunnerBundle\\Controller\\UserController::selectAction',)), array('_route' => 'r4f_runner_user_select'));
         }
 
         // fos_user_security_login
