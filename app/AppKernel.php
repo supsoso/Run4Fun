@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new r4f\RunnerBundle\r4fRunnerBundle(),
             new r4f\SiteBundle\r4fSiteBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
-            //new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			);
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
