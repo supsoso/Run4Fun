@@ -57,7 +57,7 @@ swiftmailer:
     username:   no-reply@idci-consulting.fr
     password:   '#no-repl'
     port: 465
-    
+
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
