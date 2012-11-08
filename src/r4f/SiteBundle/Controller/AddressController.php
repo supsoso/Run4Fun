@@ -1,49 +1,29 @@
 <?php
-
 namespace r4f\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use r4f\SiteBundle\Form\CourseType;
+use r4f\SiteBundle\Form\CourseHandler;
+use r4f\SiteBundle\Entity\Course;
 use r4f\SiteBundle\Entity\Address;
+use r4f\SiteBundle\Entity\Map;
+use r4f\SiteBundle\Entity\Subscription;
+use r4f\SiteBundle\Event\SubscriptionEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-/**
- * Address controller.
- *
- */
 class AddressController extends Controller
 {
-    /**
-     * Lists all Address entities.
-     *
-     */
-    public function indexAction()
+    public function getStartPoint($course_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $address_start = $this->getDoctrine()
+            ->getRepository('r4fSiteBundle:Address')
+            ->getStartPoint($course_id)
+        ;
 
-        $entities = $em->getRepository('r4fSiteBundle:Address')->findAll();
-
-        return $this->render('r4fSiteBundle:Address:index.html.twig', array(
-            'entities' => $entities
+        return $this->render('r4fSiteBundle:Course:list.html.twig', array(
+            'address_start' => $address_start,
         ));
     }
-
-    /**
-     * Finds and displays a Address entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('r4fSiteBundle:Address')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Address entity.');
-        }
-
-        return $this->render('r4fSiteBundle:Address:show.html.twig', array(
-            'entity'      => $entity,
-        ));
-    }
-
 }

@@ -1,28 +1,36 @@
 {% extends "r4fSiteBundle::layout.html.twig" %}
 
 {% block title %}
-	Accueil - Login
+    Accueil - Login
 {% endblock %}
 
+
+
+
 {% block r4fSite_body %}
-<h3>Login </h3>
+<h3>Se connecter à Run4fun </h3>
 <br />
 
 <form action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-    <label for="username">{{ 'Login'|trans({}, 'FOSUserBundle') }}</label>
+    <label for="username">Pseudo</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
-    <label for="password">{{ 'Password'|trans({}, 'FOSUserBundle') }}</label>
+    <label for="password">Mot de passe</label>
     <input type="password" id="password" name="_password" />
     
-    <label for="remember_me">{{ 'Remember Me'|trans({}, 'FOSUserBundle') }}</label>
+    <label for="remember_me">Se souvenir de moi</label>
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
     
     <br/>
-    <input type="submit" id="_submit" name="_submit" value="{{ 'Submit'|trans({}, 'FOSUserBundle') }}" />
+    <br/>
+    <input type="submit" id="_submit" name="_submit" value="Login" />
 </form>
+
+{% if error %}
+    <div>{{ error|trans([], 'r4fRunnerBundle') }}</div>
+{% endif %}
 
 <hr>
 

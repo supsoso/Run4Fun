@@ -1,8 +1,9 @@
+<h6>Participants :</h6>
 <ul class="users">
 {% for user in users %}
-	<li>
-        <a href="{{ path('r4f_runner_user_select', { 'id': user.id  }) }}">{{ user.username }}</a>
-        <span class="details">{{ user.username }}<br />{{ user.email }}</span>
+    <li>
+        <a href="{{ path('r4f_runner_user_select', { 'id': user.id  }) }}" data-placement="bottom" rel="tooltip" title="{{ user.username }}<br />{{ user.email }}" class="user-tooltip">
+        <i class="icon-user"> </i> {{ user.username }} </a>
     </li>
 {% endfor %}
 </ul>

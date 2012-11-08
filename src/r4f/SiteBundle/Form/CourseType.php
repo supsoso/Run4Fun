@@ -27,7 +27,7 @@ class CourseType extends AbstractType
 
     public function getName()
     {
-        return 'r4f_SiteBundle_coursetype';
+        return 'r4f_sitebundle_coursetype';
     }
 	
 	public function getDefaultOptions(array $options)

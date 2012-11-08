@@ -1,0 +1,11 @@
+{% extends "r4fSiteBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+    <h1>Hello {{ name }}!</h1>
+
+    <a href="{{ path('_r4f_secured_hello_admin', { 'name': name }) }}">Hello resource secured for <strong>admin</strong> only.</a>	
+{% endblock %}

@@ -1,5 +1,22 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} ^/course [OR]
+    RewriteCond %{REQUEST_URI} ^/r4f [OR]
+    RewriteCond %{REQUEST_URI} ^/user [OR]
+    RewriteCond %{REQUEST_URI} ^/login [OR]
+    RewriteCond %{REQUEST_URI} ^/profile [OR]
+    RewriteCond %{REQUEST_URI} ^/register [OR]
+    RewriteCond %{REQUEST_URI} ^/reseting
+    RewriteRule ^(.*)$ /app_dev.php [QSA,L]
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app.php [QSA,L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
 </IfModule>

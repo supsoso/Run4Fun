@@ -14,7 +14,7 @@ class MessageType extends AbstractType
 
     public function getName()
     {
-        return 'r4f_SiteBundle_messagetype';
+        return 'r4f_sitebundle_messagetype';
     }
 	
 	public function getDefaultOptions(array $options)

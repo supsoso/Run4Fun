@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="r4f\SiteBundle\Repository\SubscriptionRepository")
+ * @ORM\Table(name="subscription")
  */
 class Subscription
 {
@@ -19,11 +20,13 @@ class Subscription
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="r4f\RunnerBundle\Entity\User", inversedBy="subscriptions")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
 	 */
 	private $user;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="r4f\SiteBundle\Entity\Course", inversedBy="subscriptions")
+     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE")
 	 */
 	private $course;
 

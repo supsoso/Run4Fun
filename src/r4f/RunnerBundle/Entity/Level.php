@@ -5,8 +5,8 @@ namespace r4f\RunnerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Entity(repositoryClass="r4f\RunnerBundle\Entity\LevelRepository")
+ * @ORM\Entity(repositoryClass="r4f\RunnerBundle\Repository\LevelRepository")
+ * @ORM\Table(name="level")
  */
 class Level
 {

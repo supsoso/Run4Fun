@@ -1,0 +1,9 @@
+{% extends "r4fSiteBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block r4fSite_body %}
+    <h1>Hello {{ name }} secured for Admins only!</h1>
+{% endblock %}

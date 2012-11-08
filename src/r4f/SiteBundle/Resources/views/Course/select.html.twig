@@ -5,19 +5,35 @@
 {% endblock %}
 
 {% block r4fSite_body %}
-	<h2>Page Select course {{ course.id }}</h2>
-	<br />
-	<img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
+
+    <h2>Page Select course {{ course.id }}</h2>
+    <br />
+    <img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
     {% render "r4fSiteBundle:Course:userSubscription" with {'id': course.id} %}
-	<br />
-	<br />
-	<h6>Id course: {{ course.id }}</h6>
-	<br />
-	<h6>description: {{ course.description }}</h6>
-	<br />
-	<h6>length: {{ course.length }} Km</h6>
-	<br />
-	<h6>meeting Point: {{ course.meetingPoint }}</h6>
+    <br />
+    <br />
+    <h6>Id course:</h6>
+	<h6>{{ course.id }}</h6>
+    <br />
+    <h6>description:</h6>
+	<h6>{{ course.description }}</h6>	
+    <br />
+    <h6>length:</h6>
+	<h6>{{ course.length }} Km</h6>		
+    <br />
+    <h6>meeting Point: </h6>
+	<h6>{{ course.meetingPoint }}</h6>	
+    <br/>
+	<h6>addresse Depart: </h6>
+	<h6>{{ address_start[0].address }}</h6>	
+	<h6>{{ address_start[0].zipCode}}</h6>
+	<h6>{{ address_start[0].city }}</h6>
+    <br/>	
+    <br/>	
+	<h6>addresse Arrive: </h6>
+	<h6>{{ address_end[0].address }}</h6>	
+	<h6>{{ address_end[0].zipCode}}</h6>
+	<h6>{{ address_end[0].city }}</h6>
     <br/>
     <br/>
     <ul>

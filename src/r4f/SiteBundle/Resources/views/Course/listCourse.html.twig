@@ -1,14 +1,57 @@
-<ul class="nav nav-pills nav-stacked">
-  {% for course in courses %}
-    <li><a href="{{ path('r4f_site_course_select', { 'id': course.id  }) }}"><img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/></a></li>
-    <li>Id: {{ course.id }}</li>
-    <li>Description: {{ course.description }}</li>
-    <li>Distance: {{ course.length }} Km</li>
-    <li>Meeting Point: {{ course.meetingPoint }}</li>
-    <li id="listusers">
-        {% render "r4fSiteBundle:Course:listUsers" with {'id': course.id} %}
-    </li>
-    <br />
-  {% endfor %}
-</ul>
+    <br/><br/> 
+    <div class="search-box" style="border: 1px solid #eee;">
+        <span class="title" style="color: #666666;font-size: 24px;font-weight: bold;padding-left: 0;font-weight: bold;">Search</span>
+    <form class="form-search">
+
+    <label class="ville" style="top:-15px;">Ville: </label>
+    <input type="text" class="input-medium search-query">
+    <label class="nb" style=""> Nombre Participant: </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3"> 3 et +
+    </label>
+    <label class="distance" style=""> Distance: </label>
+    <div class="input-append">
+    <input class="span2" id="appendedInputButton" size="16" type="text"><button class="btn" type="button">Km</button>
+    </div>
+    <button type="submit" class="btn">Search</button>
+    </form>
+    </div>
+    <div class="tst">Search Results</div>
+    <ul class="results-container">
+      {% for course in courses %}
+        <li>
+        <a href="{{ path('r4f_site_course_select', { 'id': course.id  }) }}">
+            <div class="map">
+
+                    <img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
+
+            </div>
+            <ul class="text">
+                <li class="item-title"><i class="icon-flag"> </i> {{ course.description }}</li>
+                <li><i class="icon-road"> </i><span> Distance du parcours:</span> {{ course.length }} Km</li>
+                <li><i class="icon-screenshot"> </i><span> Point de Rendez-Vous:</span> {{ course.meetingPoint }}</li><br/>
+				
+                <li><i class="icon-map-marker"> </i><span> Depart:</span> {% render "r4fSiteBundle:Course:addressesStart" with {'id': course.id} %}</li>
+                <li><i class="icon-map-marker"> </i><span> Arrive:</span> {% render "r4fSiteBundle:Course:addressesEnd" with {'id': course.id} %}</li>				
+            </ul>
+        </a>
+             <div id="listusers">
+                {% render "r4fSiteBundle:Course:listUsers" with {'id': course.id} %}
+            </div>
+
+        </li>
+        <div class="clear" style="clear: both"></div>
+        <hr>
+      {% endfor %}
+    </ul>
+    <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+    </ul>
 

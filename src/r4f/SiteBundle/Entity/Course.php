@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use r4f\SiteBundle\Entity\Address;
 
 /**
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="r4f\SiteBundle\Repository\CourseRepository")
+ * @ORM\Table(name="course")
  */
 class Course
 {
@@ -26,7 +26,7 @@ class Course
 	
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\MaxLength(limit=2, message="Faites attention svp, un runner humain ne peut pas courrir plus de 100km !")
+     * @Assert\MaxLength(limit=3, message="C'est plus du Fun au delas de 1000km !")
      */
     private $length;
 	
@@ -36,17 +36,17 @@ class Course
     private $meeting_point;	
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Message", mappedBy="course", cascade={"remove", "persist"})
+	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Message", mappedBy="course")
 	 */
 	private $messages;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Subscription", mappedBy="course", cascade={"remove", "persist"})
+	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Subscription", mappedBy="course")
 	 */
 	private $subscriptions;
 	
 	/**
-     * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Map", mappedBy="course", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Map", mappedBy="course")
      */
 	private $map;
 	

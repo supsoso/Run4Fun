@@ -1,6 +1,6 @@
 <?php
 
-namespace r4f\CourseBundle\Tests\Controller;
+namespace r4f\SiteBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

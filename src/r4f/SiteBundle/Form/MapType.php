@@ -16,7 +16,7 @@ class MapType extends AbstractType
 
     public function getName()
     {
-        return 'r4f_SiteBundle_maptype';
+        return 'r4f_sitebundle_maptype';
     }
 	
 	public function getDefaultOptions(array $options)

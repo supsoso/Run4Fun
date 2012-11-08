@@ -5,15 +5,108 @@
 {% endblock %}
 
 {% block r4fSite_body %}
-	<h2>Page Courses/create</h2>
+	<h2>Creation d'un nouveau parcours</h2>
 	<br />
-	<h3>Ajout d'un parcours</h3>
+	<h5>Remplir le formulaire ou utiliser la carte dynamique</h5>	
+<iframe width="825" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.fr/maps?f=q&amp;source=s_q&amp;hl=fr&amp;geocode=&amp;q=lyon&amp;aq=&amp;sll=46.22475,2.0517&amp;sspn=25.634397,57.084961&amp;safe=strict&amp;ie=UTF8&amp;hq=&amp;hnear=Lyon,+Rh%C3%B4ne,+Rh%C3%B4ne-Alpes&amp;t=m&amp;z=12&amp;ll=45.764043,4.835659&amp;output=embed"></iframe><br /><small><a href="http://maps.google.fr/maps?f=q&amp;source=embed&amp;hl=fr&amp;geocode=&amp;q=lyon&amp;aq=&amp;sll=46.22475,2.0517&amp;sspn=25.634397,57.084961&amp;safe=strict&amp;ie=UTF8&amp;hq=&amp;hnear=Lyon,+Rh%C3%B4ne,+Rh%C3%B4ne-Alpes&amp;t=m&amp;z=12&amp;ll=45.764043,4.835659" style="color:#0000FF;text-align:left">Agrandir le plan</a></small>
+	<br />
+	<hr>
+	<h5>Ou choisir de remplir le formulaire</h5>		
 	<img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
 	<br />
-	<form method="post" {{ form_enctype(form) }}>
-	{{ form_widget(form) }}
-	<input type="submit" />
-	</form>
-	
+	<form action="{{ path('r4f_site_course_new') }}" method="post" {{ form_enctype(form) }}>
 
+	<!-- Les erreurs générales du formulaire. -->
+	{{ form_errors(form) }}
+	<div id="data_course" style="float:left;margin-right:25px;margin-top:15px;">
+		<div>
+			<!-- Génération du label. -->
+			{{ form_label(form.description, "Nom / Description") }}
+
+			<!-- Affichage des erreurs pour ce champ précis. -->
+			{{ form_errors(form.description) }}
+
+			<!-- Génération de l'input. -->
+			{{ form_widget(form.description) }}
+		</div>
+
+		<!-- Idem pour un autre champ. -->
+		<div>
+			{{ form_label(form.length, "Distance") }}
+			{{ form_errors(form.length) }}
+			{{ form_widget(form.length) }} Km !
+		</div>
+		
+		<div>
+			{{ form_label(form.meeting_point, "Point de RDV") }}
+			{{ form_errors(form.meeting_point) }}
+			{{ form_widget(form.meeting_point) }}
+		</div>
+	</div>	
+	
+	<div id="start_point" style="float:left;margin-right:25px;">
+		<div>
+			{{ form_label(form.start_point, "DEPART") }}
+		</div>		
+		
+		<div>
+			{{ form_label(form.start_point.address, "Addresse / Rue") }}
+			{{ form_errors(form.start_point.address) }}
+			{{ form_widget(form.start_point.address) }}
+		</div>	
+		
+		<div>
+			{{ form_label(form.start_point.city, "Ville") }}
+			{{ form_errors(form.start_point.city) }}
+			{{ form_widget(form.start_point.city) }}
+		</div>	
+
+		<div>
+			{{ form_label(form.start_point.zip_code, "Code postale") }}
+			{{ form_errors(form.start_point.zip_code) }}
+			{{ form_widget(form.start_point.zip_code) }}
+		</div>	
+
+		<div>
+			{{ form_label(form.start_point.country, "Pays") }}
+			{{ form_errors(form.start_point.country) }}
+			{{ form_widget(form.start_point.country) }}
+		</div>		
+	</div>
+	
+	<div>
+		{{ form_label(form.end_point, "ARRIVE") }}
+	</div>		
+	
+	<div>
+		{{ form_label(form.end_point.address, "Addresse / Rue") }}
+		{{ form_errors(form.end_point.address) }}
+		{{ form_widget(form.end_point.address) }}
+	</div>	
+	
+	<div>
+		{{ form_label(form.end_point.city, "Ville") }}
+		{{ form_errors(form.end_point.city) }}
+		{{ form_widget(form.end_point.city) }}
+	</div>	
+
+	<div>
+		{{ form_label(form.end_point.zip_code, "Code postale") }}
+		{{ form_errors(form.end_point.zip_code) }}
+		{{ form_widget(form.end_point.zip_code) }}
+	</div>	
+
+	<div>
+		{{ form_label(form.end_point.country, "Pays") }}
+		{{ form_errors(form.end_point.country) }}
+		{{ form_widget(form.end_point.country) }}
+	</div>	
+
+	<!-- Génération des champs pas encore écrits.
+		 Dans cet exemple, ça serait « date », « auteur » et « tags »,
+		 mais aussi le champ CSRF (géré automatiquement par Symfony !)
+		 et tous les champs cachés (type « hidden »). -->
+	{{ form_rest(form) }}
+	 <input type="submit" value="RUN !"/>
+ </form>
 {% endblock %}

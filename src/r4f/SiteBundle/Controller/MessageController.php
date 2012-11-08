@@ -7,8 +7,6 @@ use r4f\SiteBundle\Form\MessageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-
-
 class MessageController extends Controller
 {      
     /**
@@ -65,5 +63,4 @@ class MessageController extends Controller
         ));   
     
     }
-
 }

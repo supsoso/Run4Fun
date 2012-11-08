@@ -1,18 +1,140 @@
 {% extends "r4fRunnerBundle::layout.html.twig" %}
 
 {% block title %}
-	Accueil - {{ parent() }}
+    Accueil - {{ parent() }}
 {% endblock %}
 
 {% block r4fSite_body %}
 
-	<h1>Espace Runner</h1>
-    <img src="http://www.kidprintables.com/coloring/sports/runner.gif" title="runner" style="width: 170px;"/>
+    <div class="left-column">
+        <img class="logo_profile" alt="profile" src="{{ asset('bundles/r4fsite/images/ico_running.png') }}">
+        <div class="runner-details">
+            <div class="btn-group">
+            <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Infos Runner</a>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+            <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+            <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="i"></i> Make admin</a></li>
+            </ul>
+            </div>
+            <h3> {{ user.username }} </h3>
+            <br />
+            <h6> {{ user.username }} </h6>
+            <h6> {{ user.email }} </h6>
+            <h6> {{ user.sexe }} </h6>
+        </div>
+    </div>
+    <div class="right-column">
+{% if myspace == 1 %}
+        <div class="join-course">
+            <p class="top-text">
+                Mon espace Runner
+            </p>
+            <br/>
+{% if mycourses is defined %}
+            <p class="top-text">
+                <i class="icon-hand-down icon-white"></i> Mes parcours 
+            </p>
+            <br />
+{% else %}
+            <p class="top-text">
+                Vous n'avez effectué aucun parcours!
+            </p>
+{% endif %}
 
-	<h3> Fiche runner id: {{ id }} </h3>
-    <br />
-	<h6> {{ user.username }} </h6>
-	<h6> {{ user.email }} </h6>
+<ul class="results-container">
+      {% for course in mycourses %}
+        <li>
+        <a href="{{ path('r4f_site_course_select', { 'id': course.id  }) }}">
+            <div class="map">
+
+                    <img src="http://blog.pascal-martin.fr/public/google-maps/1/google-maps-article-1-1.png" title="map" style="width: 100px;"/>
+
+            </div>
+            <ul class="text" style="color: #969696;">
+                <li class="item-title" style="color: #fff;"><i class="icon-flag icon-white"> </i> {{ course.description }}</li>
+                <li><i class="icon-road"> </i><span> Distance du parcours:</span> {{ course.length }} Km</li>
+                <li><i class="icon-screenshot"> </i><span> Point de Rendez-Vous:</span> {{ course.meetingPoint }}</li><br/>
+                <li><i class="icon-map-marker"> </i><span> Depart:</span> address_start.address</li>
+                <li><i class="icon-map-marker"> </i><span> Arrive:</span> address_end.address</li>
+            </ul>
+        </a>
+             <div id="listusers">
+
+                {% render "r4fSiteBundle:Course:listUsers" with {'id': course.id} %}
+            </div>
+
+        </li>
+        <div class="clear" style="clear: both"></div>
+      {% endfor %}
+    </ul>
+{% if mycourses is defined %}
+            <p class="middle-text">
+                Changez de chemise comme de parcours !
+            </p>
+{% endif %}
+
+            <p class="middle btn btn-primary">
+                RUN!
+            </p>
+            <p class="bottom-text">
+                Et laisser Run4fun vous aidez à trouver des Runners autours de vous!
+            </p>
+        </div>
+        <div class="create-course">
+            <p class="top-title">
+                CREATION DE PARCOURS
+            </p>
+            <p class="top-text">
+                Creer votre parcours en 1 minute chrono
+            </p>
+            <p class="middle-text">
+                Vous n'avez pas trouver de parcours qui vous correspond? 
+            </p>
+            <p class="middle btn btn-primary">
+                Creation de Parcours!
+            </p>
+            <p class="bottom-text">
+                RUN4FUN vous permet de creer votre parcours pour permettre à d'autre Runner de vous rejoindre!
+            </p>
+        </div>
+{% else %}
+        <div class="join-course">
+            <p class="top-text">
+                Espace runner de {{ user.username }}
+            </p>
+            <p class="middle-text">
+                Qu'est-ce que vous attendez pour vous lancer?
+            </p>
+            <p class="middle btn btn-primary">
+                RUN!
+            </p>
+            <p class="bottom-text">
+                Et laisser Run4fun vous aidez à trouver des Runners autours de vous!
+            </p>
+        </div>
+        <div class="create-course">
+            <p class="top-title">
+                CREATION DE PARCOURS
+            </p>
+            <p class="top-text">
+                Creer votre parcours en 1 minute chrono
+            </p>
+            <p class="middle-text">
+                Vous n'avez pas trouver de parcours qui vous correspond? 
+            </p>
+            <p class="middle btn btn-primary">
+                Creation de Parcours!
+            </p>
+            <p class="bottom-text">
+                RUN4FUN vous permet de creer votre parcours pour permettre à d'autre Runner de vous rejoindre!
+            </p>
+        </div>
+{% endif %}
+    </div>
 
 {% endblock %}
 

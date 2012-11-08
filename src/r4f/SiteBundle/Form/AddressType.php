@@ -12,18 +12,13 @@ class AddressType extends AbstractType
 			->add('address', 'text')
 			->add('city', 'text')
 			->add('zip_code', 'text')
-			->add('country', 'text');
+			->add('country', 'choice', array(
+			'choices' => array('france' => 'France')
+			));
     }
 
     public function getName()
     {
-        return 'r4f_SiteBundle_addresstype';
-    }
-	
-	public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'r4f\SiteBundle\Entity\Address',
-        );
+        return 'r4f_sitebundle_addresstype';
     }
 }

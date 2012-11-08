@@ -7,66 +7,65 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="r4f\RunnerBundle\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
 {
-   /**
-    * @ORM\Id
-    * @ORM\Column(type="integer")
-    * @ORM\GeneratedValue(strategy="AUTO")
-    */
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     protected $id;
-	
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phone_number;
-	
-	/**
+
+    /**
      * @ORM\Column(type="date", nullable=true)
      */
     private $birthdate;
-	
+
     /**
-     * @ORM\Column(type="string",length="1", nullable=true)
-     */   
-    private $sexe;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="r4f\RunnerBundle\Entity\Level", inversedBy="users")
-	 */
-	private $level;
-	
+     * @ORM\Column(type="string",length=1, nullable=true)
+     */
+    private $sex;
+
     /**
-	 * @ORM\ManyToOne(targetEntity="r4f\RunnerBundle\Entity\Aim", inversedBy="users")
-	 */
-	private $aim;
-    
-	/**
-	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Message", mappedBy="user", cascade={"remove", "persist"})
-	 */
-	private $messages;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Subscription", mappedBy="user", cascade={"remove", "persist"})
-	 */
-	private $subscriptions;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="r4f\SiteBundle\Entity\Address", inversedBy="users")
-	 */
-	private $address;
-	
+     * @ORM\ManyToOne(targetEntity="r4f\RunnerBundle\Entity\Level", inversedBy="users")
+     */
+    private $level;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="r4f\RunnerBundle\Entity\Aim", inversedBy="users")
+     */
+    private $aim;
+
+    /**
+     * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Message", mappedBy="user")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Subscription", mappedBy="user")
+     */
+    private $subscriptions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="r4f\SiteBundle\Entity\Address", inversedBy="users")
+     */
+    private $address;
+
     public function __construct()
     {
-		parent::__construct();
+        parent::__construct();
         $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->subscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -258,22 +257,22 @@ class User extends BaseUser
     }
 
     /**
-     * Set sexe
+     * Set sex
      *
      * @param string $sexe
      */
-    public function setSexe($sexe)
+    public function setSex($sex)
     {
-        $this->sexe = $sexe;
+        $this->sex = $sex;
     }
 
     /**
-     * Get sexe
+     * Get sex
      *
      * @return string 
      */
-    public function getSexe()
+    public function getSex()
     {
-        return $this->sexe;
+        return $this->sex;
     }
 }

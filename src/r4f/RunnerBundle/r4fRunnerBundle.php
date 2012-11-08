@@ -11,5 +11,3 @@ class r4fRunnerBundle extends Bundle
         return 'FOSUserBundle';
     }
 }
-
-

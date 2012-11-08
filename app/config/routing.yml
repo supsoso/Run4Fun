@@ -1,10 +1,12 @@
 r4fSiteBundle:
-    resource: "@r4fSiteBundle/Controller"
-    type: annotation
+    resource: "@r4fSiteBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 r4fRunnerBundle:
-    resource: "@r4fRunnerBundle/Controller"
-    type: annotation
+    resource: "@r4fRunnerBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -24,4 +26,3 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
-

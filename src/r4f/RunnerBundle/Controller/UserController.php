@@ -1,5 +1,4 @@
 <?php
-
 namespace r4f\RunnerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,19 +10,10 @@ use r4f\RunnerBundle\Form\UserType;
 class UserController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/user/list")
      * @Template()
      */
-    public function indexAction()
-    {
-        return $this->render('r4fRunnerBundle:User:index.html.twig');
-    }
-   
-    /**
-     * @Route("/users")
-     * @Template()
-     */
-	public function listAction()
+    public function listAction()
     {
         $repository  = $this->getDoctrine()
             ->getEntityManager()
@@ -35,22 +25,46 @@ class UserController extends Controller
             'users' => $users
         ));
     }
-	
+
     /**
      * @Route("/user/{id}")
      * @Template()
-     */	
-	public function selectAction($id)
+     */
+    public function selectAction($id)
     {
+        if( ! $this->get('security.context')->isGranted('ROLE_USER') )
+        {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
         $user = $this->getDoctrine()
             ->getEntityManager()
             ->getRepository('r4fRunnerBundle:User')
             ->find($id)
         ;
-        
+
+        $me = $this->container->get('security.context')->getToken()->getUser();
+        $me->getId();
+
+        if($me == $user)
+        {
+           $myspace = 1;
+        }
+        else{
+          $myspace = 0;
+        }
+
+        $mycourses = $this->getDoctrine()
+            ->getRepository('r4fSiteBundle:Course')
+            ->MyCourses($id)
+        ;
+
         return $this->render('r4fRunnerBundle:User:select.html.twig', array(
             'id' => $id,
-            'user' => $user
+            'user' => $user,
+            'myspace' => $myspace,
+            'me' => $me,
+            'mycourses' => $mycourses
         ));
     }
 }

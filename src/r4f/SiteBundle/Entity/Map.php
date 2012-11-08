@@ -5,8 +5,8 @@ namespace r4f\SiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Entity(repositoryClass="r4f\UserBundle\Entity\MapRepository")
+ * @ORM\Entity(repositoryClass="r4f\SiteBundle\Repository\MapRepository")
+ * @ORM\Table(name="map")
  */
 class Map
 {
@@ -24,11 +24,13 @@ class Map
 	
 	/**
      * @ORM\ManyToOne(targetEntity="r4f\SiteBundle\Entity\Course", inversedBy="maps")
+     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE")
      */
 	private $course;
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="r4f\SiteBundle\Entity\Address", inversedBy="maps")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="CASCADE")
 	 */
 	private $address;
 

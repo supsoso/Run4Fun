@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="r4f\SiteBundle\Repository\AddressRepository")
+ * @ORM\Table(name="address")
  */
 class Address
 {
@@ -21,11 +22,6 @@ class Address
      * @ORM\Column(type="string", length=255)
      */
     private $address;
-	
-	public function __toString()
-	{
-		return $this->address;
- 	}
 	
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,9 +49,15 @@ class Address
     private $longitude;
 	
     /**
-	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Map", mappedBy="Address", cascade={"remove", "persist"})
+	 * @ORM\OneToMany(targetEntity="r4f\SiteBundle\Entity\Map", mappedBy="Address")
+     * @ORM\JoinColumn(name="map_id", referencedColumnName="id", onDelete="CASCADE")
 	 */
 	private $map;
+
+	public function __toString()
+	{
+		return $this->address;
+ 	}
 
     /**
      * Get id
